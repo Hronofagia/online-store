@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -19,7 +20,9 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
-
+    // new CopyPlugin({
+    //   patterns: [{ from: './src/datas', to: 'datas' }],
+    // }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
@@ -35,7 +38,7 @@ const config = {
         use: [stylesHandler, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|json)$/i,
         type: 'asset/resource',
       },
       {
