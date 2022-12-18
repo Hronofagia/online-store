@@ -2,10 +2,13 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "module": "es6",
+    "moduleResolution": "node",
+    "module": "ESNext",
     "target": "es5",
     "allowJs": true,
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true
   },
-  "files": ["src/index.ts"]
+  "files": ["src/index.ts"],
+  "include": ["src", "index.d.ts"]
 }
