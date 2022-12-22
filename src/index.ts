@@ -6,6 +6,8 @@ import { initRoutes } from './navigation/routes';
 import './styles.sass';
 import { createHTML } from './utils/createHTML';
 
+import { LocalStorageUtil } from './utils/localStorage';
+
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
 document.body.append(footer);
@@ -51,3 +53,7 @@ const fetchData = async (): Promise<void> => {
 void fetchData();
 
 console.log(CATALOG);
+
+const localStorageUtil = new LocalStorageUtil();
+localStorageUtil.pullProducts(2);
+console.log(localStorageUtil.getProducts());
