@@ -1,0 +1,90 @@
+[
+    {
+      "id": 1,
+      "title": "Microsoft Surface Pro 8",
+      "description": "Unlock more possibilities than ever with the Pro designed for a Pro like you. The first consumer laptop-to-tablet PC based on the Intel® Evo™ platform and designed to light up the best of Windows 11, Surface Pro 8 combines the power of a laptop with the flexibility of a tablet, and every angle in between, with the iconic Kickstand and detachable Keyboard* with built-in Slim Pen storage and charging. Do great things with a larger 13” touchscreen, faster connections with Thunderbolt™ 4 ports, and extra speed when you need it.",
+      "price": 1079,
+      "discountPercentage": 10,
+      "rating": 4.7,
+      "stock": 9,
+      "brand": "Microsoft",
+      "category": "Laptops",
+      "thumbnail": "https://i5.walmartimages.com/asr/bd273655-6e85-4324-9ff5-2f51b1868f19.6d4eeda02eddbbf1e5db7d4a555c0552.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+      "images": [
+        "https://i5.walmartimages.com/asr/75d7e571-27e3-4d43-8852-9cc0ac6eaa39.85b4f03f5a6691c1cf896b203106ca94.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/a08f02db-fb05-40d1-b99f-de4e87abe120.247047d2812ccc87121ae91211ee01f8.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/bd273655-6e85-4324-9ff5-2f51b1868f19.6d4eeda02eddbbf1e5db7d4a555c0552.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "HP 17-by4061nr",
+      "description": "The HP 17 Laptop is designed for long-lasting performance, whether you're speeding through tasks before heading into the office or staying connected with the HD camera when you're away from home. Store your personal photos, school assignments, work projects, movies and more with plenty of storage space to spare. Surf the web, stream your favorite movies and shows and use this notebook as a way to keep up with your home life and work life.",
+      "price": 551,
+      "discountPercentage": 0,
+      "rating": 4.3,
+      "stock": 7,
+      "brand": "HP",
+      "category": "Laptops",
+      "thumbnail": "https://i5.walmartimages.com/asr/6f714571-01f5-42fd-970c-1c67b8aca2c6.f62c35f0dd6f06bc53531c2b3feb9ff7.jpeg",
+      "images": [
+        "https://i5.walmartimages.com/asr/4443586f-3c69-488d-91e7-ffda10d7823e.30d117de3bd0521e58ecaf03d1a1c231.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/2a830e73-4109-4d2b-99af-a65ea3626df7.917e6c77a4c0a3f2905235dac15968e1.jpeg",
+        "https://i5.walmartimages.com/asr/64c284df-13db-4e2f-9382-4d57fe4bf73e.1726d8af85403cbab2372050f488af42.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/27bfc309-8614-49c8-8954-78ee3b0d195a.2f48b5d508141faecb673464c7491e15.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "MSI GF63",
+      "description": "MSI GF63 Thin 11SC-693 15.6\" Gaming Laptop, Intel Core i5-11400H, NVIDIA GeForce GTX 1650, 8GB Memory, 256GB NVMe SSD, Windows 11",
+      "price": 599,
+      "discountPercentage": 10,
+      "rating": 4.2,
+      "stock": 12,
+      "brand": "MSI",
+      "category": "Laptops",
+      "thumbnail": "https://i5.walmartimages.com/asr/6dd952b3-a2f0-49de-8598-fc0dce24c4ce.7ab6e5b54e52d8fdbdb91a9c9d85bbf3.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+      "images": [
+        "https://i5.walmartimages.com/asr/68218480-732d-46df-b871-103ce736957f.0e539c900c7972755ec1134379e9c3aa.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/1471e394-8339-4ea6-8a82-9f25d6402926.5a6f6df3e427b9ffadac5e197d46f8e5.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/41f2e23c-d44e-484a-a869-3645cb8d50ed.0c9f8ae0ac318e344157d3bf4d296d28.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/d2ee64bb-ea47-46e1-8d9b-4ed31db01a18.e388a32edc9d397afc2aa0e548bc7ab3.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Lenovo Legion 5 15.6",
+      "description": "Experience today's top AAA games on the Lenovo Legion 5. Inside the clean, minimalist chassis of the Legion 5 is everything you ever need to compete on equal footing with the pros, including the latest generation. Excel across every AAA title with a 15.6\" FHD display at 120 Hz refresh rate. Enjoy purpose-built performance on the Legion 5, available in striking Phantom Blue.",
+      "price": 929,
+      "discountPercentage": 25,
+      "rating": 4.7,
+      "stock": 10,
+      "brand": "Lenovo",
+      "category": "Laptops",
+      "thumbnail": "https://i5.walmartimages.com/asr/6eb1c18e-242f-41d0-aa3c-ba3968e8b3cf.18af5fbd9cef48eeb6dbe70fbfd05481.jpeg",
+      "images": [
+        "https://i5.walmartimages.com/asr/08041b03-0abc-4ba5-9fda-8e761ef7cb00.e02a84b92f15ed8b15f2632211517c50.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/07819c59-de6e-4259-a0fa-0dbb95dad0d8.0d037e48973e3e1022f625def6a2735f.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/f3eacc22-9e0d-466d-b57f-c8c3589d8902.093b8fdf715ed7ac835678405083d823.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/591de73b-c0a3-49c3-991b-d60a0b7cd06b.da8335a9e21688fe608026ec1232ee4f.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Apple MacBook Pro 15.4",
+      "description": "Experience today's top AAA games on the Lenovo Legion 5. Inside the clean, minimalist chassis of the Legion 5 is everything you ever need to compete on equal footing with the pros, including the latest generation. Excel across every AAA title with a 15.6\" FHD display at 120 Hz refresh rate. Enjoy purpose-built performance on the Legion 5, available in striking Phantom Blue.",
+      "price": 999,
+      "discountPercentage": 15,
+      "rating": 4.8,
+      "stock": 8,
+      "brand": "Apple",
+      "category": "Laptops",
+      "thumbnail": "https://i5.walmartimages.com/asr/8091b498-295f-4c93-a82f-243cc6c7d221.56bfaa475472630c650e477340ff4c84.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+      "images": [
+        "https://i5.walmartimages.com/asr/49fcad5b-5d22-41be-afdb-4b1000cb9fd8.4438449ddf4af7753655c5bfb6b96164.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/787684b2-bae7-46e2-b572-57b0b2a53aff.ef214fe524e813766b84b31a9cc0e36c.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+        "https://i5.walmartimages.com/asr/8091b498-295f-4c93-a82f-243cc6c7d221.56bfaa475472630c650e477340ff4c84.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+      ]
+    }
+  ]
