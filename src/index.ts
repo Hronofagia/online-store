@@ -6,6 +6,8 @@ import { initRoutes } from './navigation/routes';
 import './styles.sass';
 import { createHTML } from './utils/createHTML';
 
+import { LocalStorageUtil } from './utils/localStorage';
+
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
 document.body.append(footer);
@@ -17,11 +19,11 @@ Routing();
 // };
 
 // const fetchData = async (): Promise<void> => {
-//   const data = await (await fetch('./datas/categories.json')).json();
+//   const data = await (await fetch('./data/categories.json')).json();
 //   console.log(data);
 //   const allData = await Promise.all(
 //     (data.categories as string[]).map(async (category) => {
-//       return await (await fetch(`./datas/${category}.json`)).json();
+//       return await (await fetch(`./data/${category}.json`)).json();
 //     }),
 //   );
 //   console.log(allData);
@@ -33,3 +35,25 @@ Routing();
 // };
 
 // void fetchData();
+
+const CATALOG: object[] = [];
+
+const fetchData = async (): Promise<void> => {
+  const data = await (await fetch('./data/categories.json')).json();
+  const allData = await Promise.all(
+    (data.categories as string[]).map(async (category) => {
+      return await (await fetch(`./data/${category}.json`)).json();
+    }),
+  );
+  allData.forEach((element) => {
+    CATALOG.push(...element);
+  });
+};
+
+void fetchData();
+
+console.log(CATALOG);
+
+const localStorageUtil = new LocalStorageUtil();
+localStorageUtil.pullProducts(2);
+console.log(localStorageUtil.getProducts());

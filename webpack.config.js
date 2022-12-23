@@ -20,9 +20,9 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
-    // new CopyPlugin({
-    //   patterns: [{ from: './src/datas', to: 'datas' }],
-    // }),
+    new CopyPlugin({
+      patterns: [{ from: './src/data', to: 'data' }],
+    }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
