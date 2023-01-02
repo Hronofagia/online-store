@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  min-height: 84vh;
+}
+
+.footer {
+  background-color: #D39CBD;
+  height: 8vh;
+}/*# sourceMappingURL=footer.css.map */

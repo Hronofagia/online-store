@@ -1,0 +1,127 @@
+.shopping-cart_product
+    padding: 5px
+    border: solid 2px
+    border-radius: 10px
+    border-color: #ecd6e9
+    width: 90%
+    height: 120px
+    margin: 5px auto 6px auto 
+    display: grid
+    grid-template-columns: 0.1fr 1fr 0.5fr 3fr 1fr 1fr
+    grid-template-rows: 0.5fr 0.5fr 1fr
+    grid-template-areas: "number brand rating category count stock" "number thumbnail title title count price" "number thumbnail descr descr count discount"
+
+.product-cart_index
+    grid-area: number 
+
+.product_companent_count
+    grid-area: count
+
+.product_companent_brand
+    grid-area: brand
+
+.product_companent_thumbnail
+    grid-area: thumbnail
+    height: 90%
+
+.product_companent_rating
+    grid-area: rating
+
+.product_companent_category
+    grid-area: category
+    color: rgba(0,0,0,0.7)
+    padding-top: 2px
+    &::before
+        content: 'Category: '
+
+.product_companent_category,
+.product_companent_rating,
+.product_companent_description,
+.product_companent_stock,
+.product_companent_discountPercentage
+    font-size: 0.7rem
+
+
+.product_companent_stock
+    grid-area: stock
+    text-align: 120%
+    color: green
+    &::before
+        content: 'Stock: '
+    &::after
+       content: ' pc'
+
+.product_companent_title
+    grid-area: title
+    color: #5c2755
+    font-weight: 600
+
+.product_companent_price
+    grid-area: price
+    font-weight: 600
+    text-align: 120%
+    &::after
+        content: ' $'
+
+.product_companent_discountPercentage
+    grid-area: discount
+    color: red
+    margin-top: 2px
+    &::before
+        content: "-"
+    &::after
+        content: "%"
+
+.product_companent_description
+    grid-area: descr
+    overflow: hidden
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-line-clamp: 4
+    -webkit-box-orient: vertical
+    height: 80%
+
+.product_companent_price,
+.product_companent_stock
+    align-self: end
+
+.product-cart_index,
+.counter-block
+    align-self: center
+
+.product_companent_thumbnail,
+.product_companent_brand,
+.product_companent_price,
+.product_companent_stock,
+.product_companent_discountPercentage,
+.product-cart_index,
+.counter-block
+    justify-self: center
+
+.product_companent_rating::before
+    content: "\1F7CA"
+    color: rgb(255, 166, 0)
+
+
+.counter-block
+    grid-area: count
+    width: 40%
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-template-rows: 25px
+    grid-template-areas: 'minus' 'nuber' 'plus'
+    border: solid 1px #918d8de8
+    border-radius: 5px
+    justify-items: center
+    align-items: center
+    font-weight: 600
+
+.counter-block_minus,
+.counter-block_plus
+    width: 100%
+    height: 100%
+    line-height: 150%
+    text-align: center
+    cursor: pointer
+    &:hover
+        background-color: #6a6d69a4

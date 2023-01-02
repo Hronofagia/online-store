@@ -4,9 +4,11 @@ import Routing from './navigation/router';
 import { initRoutes } from './navigation/routes';
 import { CatalogItem } from './types';
 import { createHTML } from './utils/createHTML';
-import { LocalStorageUtil } from './utils/localStorage';
+import { currentlocalStorage } from './utils/localStorage';
 import { showCards } from './pages/catalog/catalog';
+
 import './styles.sass';
+import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
 
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
@@ -16,7 +18,7 @@ Routing();
 
 export const store: CatalogItem[] = [];
 
-const fetchData = async (): Promise<void> => {
+export const fetchData = async (): Promise<void> => {
   const data = await (await fetch('./data/categories.json')).json();
   const allData = await Promise.all(
     (data.categories as string[]).map(async (category) => {
@@ -27,10 +29,9 @@ const fetchData = async (): Promise<void> => {
     store.push(...element);
   });
   showCards();
+  shoppingCartContent.createNewPage();
 };
 
 void fetchData();
 
-const localStorageUtil = new LocalStorageUtil();
-localStorageUtil.pullProducts(2);
-// console.log(localStorageUtil.getProducts());
+currentlocalStorage.pullProducts(5);

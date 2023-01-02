@@ -1,4 +1,7 @@
-export interface CatalogItem {
+interface IObjectKeys {
+  [key: string]: string | number | string[];
+}
+export interface CatalogItem extends IObjectKeys {
   brand: string;
   category: string;
   description: string;
