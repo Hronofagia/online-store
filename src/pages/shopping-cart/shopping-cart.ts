@@ -1,9 +1,8 @@
 import { createHTML } from '../../utils/createHTML';
 import { createCartBlocks } from './blocksOfCart';
-import {
-  getCurrantProductsOnPage,
-  getArrProductsIdByPages,
-} from './getPagesCart';
+import { createProductCardsInCart } from './createProductCardsInCart';
+import { getNumberCartPage, getArrProductsIdByPages } from './getPagesCart';
+import { getSummary } from './summary';
 
 export const shoppingCartContainer = createHTML(
   'section',
@@ -19,7 +18,12 @@ export class ShoppingCartContent {
 
   render(): void {
     getArrProductsIdByPages();
-    getCurrantProductsOnPage();
+    getNumberCartPage();
+    getSummary();
+  }
+
+  getSummary(): void {
+    getSummary();
   }
 }
 

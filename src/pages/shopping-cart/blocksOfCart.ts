@@ -1,7 +1,8 @@
 import { createHTML } from '../../utils/createHTML';
 import './shopping-cart.sass';
 import './listProducts.sass';
-import { shoppingCartContainer } from './shopping-cart';
+import { shoppingCartContainer, shoppingCartContent } from './shopping-cart';
+import { currentlocalStorage } from '../../utils/localStorage';
 
 export function createCartBlocks(): void {
   const cartBlockTitle = createHTML('div', 'cart-block-title');
@@ -27,11 +28,12 @@ export function createCartBlocks(): void {
     'cart-block-previous-page',
     '\uD83E\uDC44',
   );
-  const countPages = createHTML('div', 'cart-count-pages', '2');
+  const countPages = createHTML('div', 'cart-count-pages', '1');
   const nextPage = createHTML('div', 'cart-block-next-page', '\uD83E\uDC46');
   cartTitlePages?.append(previousPage);
   cartTitlePages?.append(countPages);
   cartTitlePages?.append(nextPage);
+  cartTitlePages.addEventListener('click', turnPageInCart);
 
   const cartTotalName = createHTML('div', 'cart-block-total-name', 'Summary');
   const cartTotalCountProducts = createHTML(
@@ -56,4 +58,37 @@ export function createCartBlocks(): void {
     'afterbegin',
     '<input type="text" class="cart-block-total-input" id="promo-code" placeholder="Enter your promo code">',
   );
+}
+
+export function turnPageInCart(event: Event): void {
+  const NumberPage = document.querySelector('.cart-count-pages');
+
+  const ProductOnPage = document.querySelector(
+    '.cart-block-title-count',
+  )?.innerHTML;
+  const countProductOnPage = Number(ProductOnPage);
+
+  const IdProducts = currentlocalStorage.getProducts();
+  const countPage = Math.ceil(IdProducts.length / Number(countProductOnPage));
+
+  if (
+    (event.target as HTMLElement).closest('.cart-block-previous-page') !==
+      null &&
+    Number(NumberPage?.innerHTML) > 1
+  ) {
+    (document.querySelector('.cart-count-pages') as Element).innerHTML = `${
+      Number(NumberPage?.innerHTML) - 1
+    }`;
+    shoppingCartContent.render();
+  }
+
+  if (
+    (event.target as HTMLElement).closest('.cart-block-next-page') !== null &&
+    Number(NumberPage?.innerHTML) < countPage
+  ) {
+    (document.querySelector('.cart-count-pages') as Element).innerHTML = `${
+      Number(NumberPage?.innerHTML) + 1
+    }`;
+    shoppingCartContent.render();
+  }
 }
