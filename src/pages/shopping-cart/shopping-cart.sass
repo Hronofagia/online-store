@@ -1,11 +1,12 @@
 .shopping-cart_container
     display: grid
     grid-template-columns: 3fr 1fr
-    grid-template-rows: 10% 90%
+    grid-template-rows: 30px 90%
     grid-template-areas: "title total" "products total"
     position: relative
     margin: 0 5% 0 5%
     height: 100%
+    margin-top: 20px
 
 .cart-block-title
     display: grid
@@ -16,14 +17,16 @@
     height: 30px
     margin-left: auto
     margin-right: auto
+    margin-bottom: 20px
     grid-area: title
     border-radius: 10px
     background-color: rgb(175 164 173 / 15%)
-    margin-top: 20px
 
 .cart-block-products
+    position: relative
     grid-area: products
     margin-top: 20px
+    min-height: 150px
 
 .cart-block-total
     grid-area: total
@@ -81,7 +84,9 @@
 
 .cart-block-total-price
     &::before
-        content: 'Total: $'
+        content: 'Total: '
+    &::after
+        content: '$'
 
 .cart-block-total-button
     width: 70%
@@ -103,8 +108,6 @@
         background-color: white
 
 
-.gray
-    color: red
-    background-color: green
-    font-size: 40
-    
+.empty-cart
+    text-align: center
+    margin-top: 50px

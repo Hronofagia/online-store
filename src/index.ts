@@ -34,4 +34,4 @@ export const fetchData = async (): Promise<void> => {
 
 void fetchData();
 
-currentlocalStorage.pullProducts(5);
+// currentlocalStorage.pullProducts(5);
