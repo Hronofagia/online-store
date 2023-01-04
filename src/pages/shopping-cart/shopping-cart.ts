@@ -1,6 +1,6 @@
 import { createHTML } from '../../utils/createHTML';
 import { createCartBlocks } from './blocksOfCart';
-import { createProductCardsInCart } from './createProductCardsInCart';
+// import { createProductCardsInCart } from './createProductCardsInCart';
 import { getNumberCartPage, getArrProductsIdByPages } from './getPagesCart';
 import { getSummary } from './summary';
 

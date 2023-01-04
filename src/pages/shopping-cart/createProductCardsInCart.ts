@@ -15,12 +15,14 @@ export function createProductCardsInCart({
   const currantArrIdProducts = arrPages[currentPage - 1];
 
   if (arrPages.length === 0) {
-    const emptyCart = createHTML(
-      'div',
-      'empty-cart',
-      "You haven't selected any products yet",
-    );
-    document.querySelector('.cart-block-products')?.append(emptyCart);
+    if (document.querySelectorAll('.empty-cart').length === 0) {
+      const emptyCart = createHTML(
+        'div',
+        'empty-cart',
+        "You haven't selected any products yet",
+      );
+      document.querySelector('.cart-block-products')?.append(emptyCart);
+    }
   } else {
     document.querySelector('.empty-cart')?.remove();
 

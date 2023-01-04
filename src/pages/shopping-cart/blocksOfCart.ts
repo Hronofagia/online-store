@@ -17,11 +17,27 @@ export function createCartBlocks(): void {
     'cart-block-title-name',
     'Products In Cart',
   );
-  const cartTitlePages = createHTML('div', 'cart-block-title-pages');
-  const cartTitleCount = createHTML('div', 'cart-block-title-count', '3');
   cartBlockTitle?.append(cartTitleName);
+
+  const cartTitlePages = createHTML('div', 'cart-block-title-pages');
   cartBlockTitle?.append(cartTitlePages);
+
+  const cartTitleCount = createHTML('div', 'cart-block-count-on-page');
   cartBlockTitle?.append(cartTitleCount);
+
+  const selectArray = ['3', '5', '10'];
+  const selectList = document.createElement('select');
+  selectList.id = 'select-count-on-page';
+  cartTitleCount.appendChild(selectList);
+  selectList.addEventListener('change', changeCountProductOnPage);
+
+  for (let i = 0; i < selectArray.length; i++) {
+    const option = document.createElement('option');
+    option.value = selectArray[i];
+    option.text = selectArray[i];
+    if (i === 0) option.selected = true;
+    selectList.appendChild(option);
+  }
 
   const previousPage = createHTML(
     'div',
@@ -63,10 +79,12 @@ export function createCartBlocks(): void {
 export function turnPageInCart(event: Event): void {
   const NumberPage = document.querySelector('.cart-count-pages');
 
-  const ProductOnPage = document.querySelector(
-    '.cart-block-title-count',
-  )?.innerHTML;
-  const countProductOnPage = Number(ProductOnPage);
+  const selectElement = document.querySelector(
+    '#select-count-on-page',
+  ) as HTMLSelectElement;
+  const countProductOnPage = Number(
+    selectElement.options[selectElement?.selectedIndex].value,
+  );
 
   const IdProducts = currentlocalStorage.getProducts();
   const countPage = Math.ceil(IdProducts.length / Number(countProductOnPage));
@@ -91,4 +109,8 @@ export function turnPageInCart(event: Event): void {
     }`;
     shoppingCartContent.render();
   }
+}
+
+export function changeCountProductOnPage(event: Event): void {
+  shoppingCartContent.render();
 }
