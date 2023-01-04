@@ -38,7 +38,7 @@ const config = {
         use: [stylesHandler, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|json)$/i,
+        test: /\.(?:ico|gif|png|svg|jpg|jpeg|json)$/i,
         type: 'asset/resource',
       },
       {
