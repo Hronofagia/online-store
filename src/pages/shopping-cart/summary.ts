@@ -8,7 +8,11 @@ export function getSummary(): void {
   const contentlocalStorage = currentlocalStorage.getProducts();
 
   for (let i = 0; i < contentlocalStorage.length; i++) {
-    summaryPrice += store[contentlocalStorage[i]].price;
+    console.log(contentlocalStorage[i]);
+    const currantId = store.findIndex(
+      (product) => Number(product.id) === contentlocalStorage[i],
+    );
+    summaryPrice += store[currantId].price;
     summaryCount += 1;
   }
   (

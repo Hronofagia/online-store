@@ -5,18 +5,22 @@ let arrPages: number[][] = [];
 
 export function getArrProductsIdByPages(): number[][] {
   arrPages = [];
-  const ProductOnPage = document.querySelector(
-    '.cart-block-title-count',
-  )?.innerHTML;
-  const countProductOnPage = Number(ProductOnPage);
+  const selectElement = document.querySelector(
+    '#select-count-on-page',
+  ) as HTMLSelectElement;
+
+  const countProductOnPage = Number(
+    selectElement.options[selectElement?.selectedIndex].value,
+  );
   const IdProducts = currentlocalStorage.getProducts();
-  const countPage = Math.ceil(IdProducts.length / Number(countProductOnPage));
+  const countPage = Math.ceil(IdProducts.length / countProductOnPage);
   for (let i = 0; i < countPage; i++) {
     let IdSet = [];
     IdSet = IdProducts.slice(
       i * countProductOnPage,
       i * countProductOnPage + countProductOnPage,
     );
+    console.log('IdSet', IdSet);
     arrPages.push(IdSet);
   }
   return arrPages;
@@ -24,9 +28,16 @@ export function getArrProductsIdByPages(): number[][] {
 
 export function getNumberCartPage(): void {
   clearCartPage();
-  const currentPage = Number(
+
+  let currentPage = Number(
     document.querySelector('.cart-count-pages')?.innerHTML,
   );
+  if (currentPage > arrPages.length) {
+    (
+      document.querySelector('.cart-count-pages') as Element
+    ).innerHTML = `${arrPages.length}`;
+    currentPage = arrPages.length;
+  }
 
   createProductCardsInCart({ arrPages, currentPage });
 }
