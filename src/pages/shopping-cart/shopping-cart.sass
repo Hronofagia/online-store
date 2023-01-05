@@ -42,7 +42,10 @@
     justify-items: center
 
 .cart-block-previous-page,
-.cart-block-next-page
+.cart-block-next-page,
+.button-add-promo-code,
+.applied-promoCode-remove,
+.cart-block-total-button
     cursor: pointer
 
 
@@ -61,16 +64,17 @@
 
 .cart-block-total
     display: grid
-    grid-template-rows: repeat(4, 1fr) 2fr
+    grid-template-rows: 40px 30px 40px 3fr 2fr
     background-color: #ecd6e942
     margin-top: 20px
-    height: 200px
+    height: min-content
     width: auto
     border-radius: 10px
     border: solid 1px
     border-color: #ecd6e9
     justify-items: center
-    align-items: center
+    grid-gap: 5px
+    // align-items: center
 
 .cart-block-total-name
     height: 100%
@@ -92,26 +96,82 @@
     &::after
         content: '$'
 
-.cart-block-total-button
-    width: 70%
+.cart-block-total-discount-wrapper
+    display: grid
+    grid-template-columns: 3fr 1fr
+    grid-gap: 10px
+    justify-items: center
+    padding: 5px
+
+.cart-block-total-button,
+.button-add-promo-code
+    width: 90%
     height: 30px
-    background-color: #5ea818
     color: white
     font-weight: 700
     border-radius: 10px
     border: none
 
+
+.button-add-promo-code
+    background-color: #23262680
+
+.cart-block-total-button
+    margin-bottom: 10px
+    background-color: #5ea818
+
 .cart-block-total-input
     height: 25px
+    width: 90%
+    font-size: 14px
     text-align: center
     border-radius: 10px
     border: 1px solid #06060673
-    background-color: #06060624
+    background-color: white
     &[type=text]:focus
         border-color: #a0eb5b
-        background-color: white
+
 
 
 .empty-cart
     text-align: center
     margin-top: 50px
+    padding-left: 35%
+
+.hidden
+    display: none
+
+.crossed
+    text-decoration: line-through
+    color: red
+    text-align: center
+
+.cart-block-total-new-price
+    color: #588f25
+    &::before
+        content: 'New Price: '
+    &::after
+        content: '$'
+
+.applied-promoCode-remove
+    color: red
+    font-size: 12px
+    margin-left: 10px
+
+.promoCode-percent
+    &::before
+        content: ' -'
+    &::after
+        content: ' %'
+
+.promoCode-value
+    &::before
+        content: '  (-'
+    &::after
+        content: '$)  '
+
+.input-right
+    color: green
+
+.input-right-button
+    background-color: green

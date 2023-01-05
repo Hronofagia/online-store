@@ -20,7 +20,6 @@ export function getArrProductsIdByPages(): number[][] {
       i * countProductOnPage,
       i * countProductOnPage + countProductOnPage,
     );
-    console.log('IdSet', IdSet);
     arrPages.push(IdSet);
   }
   return arrPages;

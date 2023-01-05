@@ -3,33 +3,33 @@ import './shopping-cart.sass';
 import './listProducts.sass';
 import { shoppingCartContainer, shoppingCartContent } from './shopping-cart';
 import { currentlocalStorage } from '../../utils/localStorage';
+import { addPromoCode, checkInput } from './promo-code';
 
 export function createCartBlocks(): void {
-  const cartBlockTitle = createHTML('div', 'cart-block-title');
-  const cartBloclProducts = createHTML('div', 'cart-block-products');
-  const cartBlockTotal = createHTML('div', 'cart-block-total');
-  shoppingCartContainer?.append(cartBlockTitle);
-  shoppingCartContainer?.append(cartBloclProducts);
-  shoppingCartContainer?.append(cartBlockTotal);
+  const blockTitle = createHTML('div', 'cart-block-title');
+  const bloclProducts = createHTML('div', 'cart-block-products');
+  const blockSummary = createHTML('div', 'cart-block-total');
+  shoppingCartContainer?.append(blockTitle);
+  shoppingCartContainer?.append(bloclProducts);
+  shoppingCartContainer?.append(blockSummary);
 
-  const cartTitleName = createHTML(
+  const blockTitleName = createHTML(
     'div',
     'cart-block-title-name',
     'Products In Cart',
   );
-  cartBlockTitle?.append(cartTitleName);
+  blockTitle?.append(blockTitleName);
 
-  const cartTitlePages = createHTML('div', 'cart-block-title-pages');
-  cartBlockTitle?.append(cartTitlePages);
+  const blockTitlePages = createHTML('div', 'cart-block-title-pages');
+  blockTitle?.append(blockTitlePages);
 
-  const cartTitleCount = createHTML('div', 'cart-block-count-on-page');
-  cartBlockTitle?.append(cartTitleCount);
+  const blockTitleCount = createHTML('div', 'cart-block-count-on-page');
+  blockTitle?.append(blockTitleCount);
 
   const selectArray = ['3', '5', '10'];
   const selectList = document.createElement('select');
   selectList.id = 'select-count-on-page';
-  cartTitleCount.appendChild(selectList);
-  selectList.addEventListener('change', changeCountProductOnPage);
+  blockTitleCount.appendChild(selectList);
 
   for (let i = 0; i < selectArray.length; i++) {
     const option = document.createElement('option');
@@ -46,34 +46,69 @@ export function createCartBlocks(): void {
   );
   const countPages = createHTML('div', 'cart-count-pages', '1');
   const nextPage = createHTML('div', 'cart-block-next-page', '\uD83E\uDC46');
-  cartTitlePages?.append(previousPage);
-  cartTitlePages?.append(countPages);
-  cartTitlePages?.append(nextPage);
-  cartTitlePages.addEventListener('click', turnPageInCart);
+  blockTitlePages?.append(previousPage);
+  blockTitlePages?.append(countPages);
+  blockTitlePages?.append(nextPage);
 
-  const cartTotalName = createHTML('div', 'cart-block-total-name', 'Summary');
-  const cartTotalCountProducts = createHTML(
+  const blockSummaryName = createHTML(
+    'div',
+    'cart-block-total-name',
+    'Summary',
+  );
+  blockSummary?.append(blockSummaryName);
+
+  const blockSummaryCountProducts = createHTML(
     'div',
     'cart-block-total-count',
     '0',
   );
-  const cartTotalCountPrice = createHTML('div', 'cart-block-total-price', '0');
-  const cartTotalDiscount = createHTML('form', 'cart-block-total-discount');
+  blockSummary?.append(blockSummaryCountProducts);
+
+  const blockSummaryWrapperCountPrice = createHTML(
+    'div',
+    'cart-block-wrapper-total-price',
+  );
+  blockSummary?.append(blockSummaryWrapperCountPrice);
+
+  const summaryCountPrice = createHTML('div', 'cart-block-total-price', '0');
+  blockSummaryWrapperCountPrice?.append(summaryCountPrice);
+
+  const NewSmmaryCountPrice = createHTML(
+    'div',
+    'cart-block-total-new-price hidden',
+  );
+  blockSummaryWrapperCountPrice?.append(NewSmmaryCountPrice);
+
+  const blockSummaryWrapperDiscount = createHTML(
+    'form',
+    'cart-block-total-discount-wrapper',
+  );
+  blockSummary?.append(blockSummaryWrapperDiscount);
+
+  const formDiscount = createHTML('form', 'cart-block-total-discount');
+  blockSummaryWrapperDiscount?.append(formDiscount);
+  formDiscount.insertAdjacentHTML(
+    'afterbegin',
+    '<input type="text" class="cart-block-total-input" id="promo-code" placeholder="Promo code (1, 2, 3)">',
+  );
+
+  const buttonPromoCode = createHTML('button', 'button-add-promo-code', 'ADD');
+  blockSummaryWrapperDiscount?.append(buttonPromoCode);
+
+  // const appliedPromoCode = createHTML('div', 'wrapper-applied-promoCode');
+  // blockSummaryWrapperDiscount?.append(appliedPromoCode);
+
   const cartTotalButton = createHTML(
     'button',
     'cart-block-total-button',
     'BUY NOW',
   );
-  cartBlockTotal?.append(cartTotalName);
-  cartBlockTotal?.append(cartTotalCountProducts);
-  cartBlockTotal?.append(cartTotalCountPrice);
-  cartBlockTotal?.append(cartTotalDiscount);
-  cartBlockTotal?.append(cartTotalButton);
+  blockSummary?.append(cartTotalButton);
 
-  cartTotalDiscount.insertAdjacentHTML(
-    'afterbegin',
-    '<input type="text" class="cart-block-total-input" id="promo-code" placeholder="Enter your promo code">',
-  );
+  selectList.addEventListener('change', changeCountProductOnPage);
+  blockTitlePages.addEventListener('click', turnPageInCart);
+  buttonPromoCode.addEventListener('click', addPromoCode);
+  formDiscount.addEventListener('input', checkInput);
 }
 
 export function turnPageInCart(event: Event): void {

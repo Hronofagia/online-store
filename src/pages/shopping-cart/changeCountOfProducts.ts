@@ -1,11 +1,13 @@
 import './shopping-cart.sass';
 import { currentlocalStorage } from '../../utils/localStorage';
 import { shoppingCartContent } from './shopping-cart';
+import { clearDiscount } from './promo-code';
 
 export function changeCountOfProducts(event: Event): void {
   if (
     (event.target as HTMLElement).closest('.shopping-cart_product') !== null
   ) {
+    clearDiscount();
     const currantProduct = (event.target as HTMLElement).closest(
       '.shopping-cart_product',
     );

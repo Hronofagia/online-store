@@ -30,3 +30,7 @@ export interface Store {
   settings: CatalogSettings;
   setSetting: (key: keyof CatalogSettings, data: number | string) => void;
 }
+
+export interface Promocode {
+  [key: string]: number;
+}

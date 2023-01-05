@@ -22,9 +22,13 @@ export function createProductCardsInCart({
         "You haven't selected any products yet",
       );
       document.querySelector('.cart-block-products')?.append(emptyCart);
+      document.querySelector('.cart-block-title')?.classList.add('hidden');
+      document.querySelector('.cart-block-total')?.classList.add('hidden');
     }
   } else {
     document.querySelector('.empty-cart')?.remove();
+    document.querySelector('.cart-block-title')?.classList.remove('hidden');
+    document.querySelector('.cart-block-total')?.classList.remove('hidden');
 
     for (let i = 0; i < currantArrIdProducts.length; i++) {
       const currentId = store.findIndex(
