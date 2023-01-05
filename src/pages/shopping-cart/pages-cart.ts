@@ -1,4 +1,4 @@
-import { createProductCardsInCart } from './createProductCardsInCart';
+import { createProductCardsInCart } from './create-product-cart';
 import { currentlocalStorage } from '../../utils/localStorage';
 
 let arrPages: number[][] = [];

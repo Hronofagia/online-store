@@ -1,7 +1,6 @@
 import { createHTML } from '../../utils/createHTML';
-import { createCartBlocks } from './blocksOfCart';
-// import { createProductCardsInCart } from './createProductCardsInCart';
-import { getNumberCartPage, getArrProductsIdByPages } from './getPagesCart';
+import { createCartBlocks } from './blocks-body-cart';
+import { getNumberCartPage, getArrProductsIdByPages } from './pages-cart';
 import { getSummary } from './summary';
 
 export const shoppingCartContainer = createHTML(

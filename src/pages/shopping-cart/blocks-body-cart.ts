@@ -1,6 +1,6 @@
 import { createHTML } from '../../utils/createHTML';
 import './shopping-cart.sass';
-import './listProducts.sass';
+import './item-ptoduct.sass';
 import { shoppingCartContainer, shoppingCartContent } from './shopping-cart';
 import { currentlocalStorage } from '../../utils/localStorage';
 import { addPromoCode, checkInput } from './promo-code';

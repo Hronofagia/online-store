@@ -2,7 +2,7 @@ import { createHTML } from '../../utils/createHTML';
 import './shopping-cart.sass';
 import { store } from '../../index';
 import { currentlocalStorage } from '../../utils/localStorage';
-import { changeCountOfProducts } from './changeCountOfProducts';
+import { changeCountOfProducts } from './count-of-product';
 
 export function createProductCardsInCart({
   arrPages,
