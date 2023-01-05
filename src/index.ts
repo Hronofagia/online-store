@@ -3,7 +3,6 @@ import { header } from './components/header/header';
 import Routing from './navigation/router';
 import { initRoutes } from './navigation/routes';
 import { createHTML } from './utils/createHTML';
-import { currentlocalStorage } from './utils/localStorage';
 import { showCards } from './pages/catalog/catalog';
 
 import './styles.sass';
