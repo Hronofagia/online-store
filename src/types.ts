@@ -14,3 +14,7 @@ export interface CatalogItem extends IObjectKeys {
   thumbnail: string;
   title: string;
 }
+
+export interface Promocode {
+  [key: string]: number;
+}
