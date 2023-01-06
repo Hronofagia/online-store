@@ -63,6 +63,11 @@ export class Store {
         const max = this.settings.price.max;
         return min <= el.price && el.price <= max;
       });
+      temporaryItems = temporaryItems.filter((el) => {
+        const min = this.settings.stock.min;
+        const max = this.settings.stock.max;
+        return min <= el.stock && el.stock <= max;
+      });
 
       this.filteredItems = temporaryItems;
     };

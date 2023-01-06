@@ -22,8 +22,6 @@ const searchBox = createInput('search_box', 'Search product');
 searchBox.value = '';
 
 searchBox.addEventListener('input', (e) => {
-  console.log(e);
-
   store.setSetting('search', (e.target as HTMLInputElement).value);
 });
 
@@ -38,12 +36,8 @@ const searchbButtonImg = createHTML(
 searchbButtonImg.src = searchIcon as string;
 searchbButton.append(searchbButtonImg);
 
-const foundeProducts = createHTML(
-  'p',
-  'founde_products',
-  'Found 100500 products',
-);
-topPanel.append(foundeProducts);
+const foundProducts = createHTML('p', 'found_products', 'Found 100 products');
+topPanel.append(foundProducts);
 
 const sortContainer = createHTML('select', 'sort_container');
 topPanel.append(sortContainer);
@@ -101,7 +95,17 @@ export const showCards: () => void = () => {
       el.id,
     );
     cardProductButtonContainer.append(cardProductButtonAdd);
+    cardMenu.addEventListener('click', () => {
+      cardProduct.classList.remove('list_product');
+      cardProduct.classList.add('card_product');
+      // store.setSetting('cardView');
+    });
+    listMenu.addEventListener('click', () => {
+      cardProduct.classList.remove('card_product');
+      cardProduct.classList.add('list_product');
+    });
   });
+  foundProducts.textContent = `Found ${store.filteredItems.length} products`;
 };
 
 appendToFilterContainer(filtersContainer);
