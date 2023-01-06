@@ -7,6 +7,7 @@ import { LocalStorageUtil } from './utils/localStorage';
 import { showCards } from './pages/catalog/catalog';
 import './styles.sass';
 import { Store } from './store';
+import { showBrand, showCategory } from './components/filters/filters';
 
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
@@ -25,7 +26,10 @@ const fetchData = async (): Promise<void> => {
   allData.forEach((element) => {
     store.setItems(element);
   });
+  store.filterItems();
   showCards();
+  showCategory();
+  showBrand();
 };
 
 void fetchData();

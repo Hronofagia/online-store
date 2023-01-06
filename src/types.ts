@@ -15,9 +15,9 @@ export interface CatalogItem {
 export interface CatalogSettings {
   category: string[];
   brand: string[];
-  price: number[];
-  stock: number[];
-  sortBy: string[];
+  price: { min: number; max: number };
+  stock: { min: number; max: number };
+  sortBy: string;
   search: string;
   cardView: string[];
 }

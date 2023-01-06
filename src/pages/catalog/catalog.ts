@@ -5,6 +5,7 @@ import cardMenuIcon from '../../assets/card-menu.png';
 import listMenuIcon from '../../assets/list-menu.png';
 import { appendToFilterContainer } from '../../components/filters/filters';
 import { store } from '../..';
+import { SortTypes } from '../../store';
 
 export const catalogContainer = createHTML('section', 'catalog_container');
 document.querySelector('.main')?.append(catalogContainer);
@@ -46,13 +47,13 @@ topPanel.append(foundeProducts);
 
 const sortContainer = createHTML('select', 'sort_container');
 topPanel.append(sortContainer);
-const mostPopular = createOption('Most popular');
+export const mostPopular = createOption('Most popular');
 sortContainer.append(mostPopular);
-const lessPopular = createOption('Less popular');
+export const lessPopular = createOption('Less popular');
 sortContainer.append(lessPopular);
-const minMaxPrice = createOption('Price: Low to high');
+export const minMaxPrice = createOption('Price: Low to high');
 sortContainer.append(minMaxPrice);
-const maxMinPrice = createOption('Price: High to low');
+export const maxMinPrice = createOption('Price: High to low');
 sortContainer.append(maxMinPrice);
 
 const viewMenuContainer = createHTML('div', 'view_menu_container');
@@ -72,7 +73,8 @@ export const filtersContainer = createHTML('div', 'filters_container');
 mainContainer.append(filtersContainer);
 
 export const showCards: () => void = () => {
-  store.items.forEach((el) => {
+  Array.from(catalogList.children).forEach((el) => el.remove());
+  store.filteredItems.forEach((el) => {
     const cardProduct = createHTML('div', 'card_product');
     catalogList.append(cardProduct);
     const cardProductImage = createHTML('div', 'card_product__image');
@@ -107,3 +109,7 @@ appendToFilterContainer(filtersContainer);
 export const updateComponents = (): void => {
   searchBox.value = store.settings.search;
 };
+
+mostPopular.addEventListener('click', () => {
+  store.setSetting('sortBy', SortTypes.Popular);
+});
