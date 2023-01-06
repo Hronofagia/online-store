@@ -1,13 +1,33 @@
+@import "../../styles"
+
 .catalog_container
   display: flex
   padding: 0 10%
+  flex-direction: column
+  gap: 10px
   .top_panel
     display: flex
+    justify-content: space-between
+    .search_container
+      display: flex
+      .search_box
+        width: 150px
+        height: 50px
+        max-width: 100px
+        max-height: 36px
+      .search_button
+        width: 40px
+        height: 40px
+        background-color: $purple
+        .search_button__img
+          width: 30px
+          height: 30px
   .main_container
     display: flex
     .catalog_list
       display: flex
       flex-wrap: wrap
+      width: 80%
       .card_product
         display: flex
         flex-direction: column
@@ -19,8 +39,16 @@
         .card_product__button_container
           display: flex
           justify-content: space-evenly
+      .list_product
+        display: flex
+        width: 100%
+        .card_product__image
+          width: 150px
+          height: 150px
+          background-size: cover
     .filters_container
       display: flex
       flex-direction: column
+      width: 20%
 
     

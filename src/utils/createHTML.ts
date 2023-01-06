@@ -16,3 +16,23 @@ export const createHTML = (
   }
   return element;
 };
+
+export const createInput = (
+  className: string,
+  placeholder?: string,
+): HTMLInputElement => {
+  const element = document.createElement('input');
+  element.className = className;
+  element.placeholder = placeholder ?? '';
+  return element;
+};
+
+export const createOption = (
+  text: string,
+  selected?: boolean,
+): HTMLOptionElement => {
+  const element = document.createElement('option');
+  element.text = text;
+  element.selected = selected ?? false;
+  return element;
+};
