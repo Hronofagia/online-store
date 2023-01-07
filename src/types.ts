@@ -34,3 +34,7 @@ export interface Store {
 export interface Promocode {
   [key: string]: number;
 }
+
+export interface BanksLogo {
+  [key: string]: string;
+}
