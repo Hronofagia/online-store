@@ -64,7 +64,7 @@
 
 .cart-block-total
     display: grid
-    grid-template-rows: 40px 30px 40px 3fr 2fr
+    grid-template-rows: 40px 30px 40px 3fr 5fr
     background-color: #ecd6e942
     margin-top: 20px
     height: min-content
@@ -74,7 +74,7 @@
     border-color: #ecd6e9
     justify-items: center
     grid-gap: 5px
-    // align-items: center
+    align-items: center
 
 .cart-block-total-name
     height: 100%
@@ -94,7 +94,7 @@
     &::before
         content: 'Total: '
     &::after
-        content: '$'
+        content: ' €'
 
 .cart-block-total-discount-wrapper
     display: grid
@@ -119,6 +119,8 @@
 .cart-block-total-button
     margin-bottom: 10px
     background-color: #5ea818
+    margin-top: 20px
+    margin-bottom: 20px
 
 .cart-block-total-input
     height: 25px
@@ -134,8 +136,9 @@
 
 
 .empty-cart
+    font-size: 25px
     text-align: center
-    margin-top: 50px
+    margin-top: 200px
     padding-left: 35%
 
 .hidden
@@ -148,10 +151,11 @@
 
 .cart-block-total-new-price
     color: #588f25
+    font-size: 18px
     &::before
         content: 'New Price: '
     &::after
-        content: '$'
+        content: ' €'
 
 .applied-promoCode-remove
     color: red
@@ -168,7 +172,7 @@
     &::before
         content: '  (-'
     &::after
-        content: '$)  '
+        content: ' €)  '
 
 .input-right
     color: green

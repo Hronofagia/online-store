@@ -18,3 +18,7 @@ export interface CatalogItem extends IObjectKeys {
 export interface Promocode {
   [key: string]: number;
 }
+
+export interface BanksLogo {
+  [key: string]: string;
+}

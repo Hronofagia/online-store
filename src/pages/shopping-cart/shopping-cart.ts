@@ -1,6 +1,7 @@
 import { createHTML } from '../../utils/createHTML';
 import { createCartBlocks } from './blocks-body-cart';
 import { getNumberCartPage, getArrProductsIdByPages } from './pages-cart';
+import { resetCart } from './resetCart';
 import { getSummary } from './summary';
 
 export const shoppingCartContainer = createHTML(
@@ -23,6 +24,10 @@ export class ShoppingCartContent {
 
   getSummary(): void {
     getSummary();
+  }
+
+  reset(): void {
+    resetCart();
   }
 }
 

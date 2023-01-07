@@ -4,6 +4,7 @@ import './item-ptoduct.sass';
 import { shoppingCartContainer, shoppingCartContent } from './shopping-cart';
 import { currentlocalStorage } from '../../utils/localStorage';
 import { addPromoCode, checkInput } from './promo-code';
+import { modalWindow } from '../modal/modal';
 
 export function createCartBlocks(): void {
   const blockTitle = createHTML('div', 'cart-block-title');
@@ -104,6 +105,7 @@ export function createCartBlocks(): void {
     'BUY NOW',
   );
   blockSummary?.append(cartTotalButton);
+  cartTotalButton.addEventListener('click', modalWindow.render);
 
   selectList.addEventListener('change', changeCountProductOnPage);
   blockTitlePages.addEventListener('click', turnPageInCart);
