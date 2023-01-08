@@ -122,8 +122,6 @@ cardMenu.addEventListener('click', () => {
   showCards();
 });
 listMenu.addEventListener('click', () => {
-  // cardProduct.classList.remove('card_product');
-  // cardProduct.classList.add('list_product');
   cardMenu.classList.remove('current__menu_icon');
   listMenu.classList.add('current__menu_icon');
   store.setView(CatalogView.list);
