@@ -29,10 +29,14 @@ const priceInputContainerTitle = createHTML('p', 'container_title', 'Price');
 priceInputContainer.append(priceInputContainerTitle);
 
 export const showPrice = (): void => {
+  // priceInputContainer.removeChild('sliderContainer');
   priceInputContainer.append(
     createSlider(store.settings.price, store.setPrice, '15', '2271'),
   );
-  priceInputContainer.append(
+};
+
+export const showStock = (): void => {
+  stockInputContainer.append(
     createSlider(store.settings.stock, store.setStock, '1', '28'),
   );
 };

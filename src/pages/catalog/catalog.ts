@@ -68,6 +68,7 @@ mainContainer.append(filtersContainer);
 
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
+  store.sortItems();
   store.filteredItems.forEach((el) => {
     const cardProduct = createHTML('div', store.cardView);
     catalogList.append(cardProduct);
@@ -115,6 +116,19 @@ export const updateComponents = (): void => {
   searchBox.value = store.settings.search;
 };
 
-mostPopular.addEventListener('click', () => {
-  store.setSetting('sortBy', SortTypes.Popular);
+sortContainer.addEventListener('input', (event) => {
+  const currentSort = (event.target as HTMLSelectElement).value;
+  if (currentSort === 'Most popular') {
+    store.setSetting('sortBy', SortTypes.Popular);
+  }
+  if (currentSort === 'Less popular') {
+    store.setSetting('sortBy', SortTypes.Unpopular);
+  }
+  if (currentSort === 'Price: Low to high') {
+    store.setSetting('sortBy', SortTypes.Cheap);
+  }
+  if (currentSort === 'Price: High to low') {
+    store.setSetting('sortBy', SortTypes.Expensive);
+  }
+  showCards();
 });

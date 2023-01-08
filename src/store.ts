@@ -1,10 +1,11 @@
+import { showPrice } from './components/filters/filters';
 import { CatalogItem, CatalogSettings } from './types';
 
 export enum SortTypes {
   Popular = 'mostPopular',
   Unpopular = 'lessPopular',
-  Cheap = 'maxMinPrice',
-  Expensive = 'minMaxPrice',
+  Cheap = 'minMaxPrice',
+  Expensive = 'maxMinPrice',
 }
 
 export enum CatalogView {
@@ -26,7 +27,7 @@ export class Store {
   resetBrandFIlterValue: (value: string) => void;
   setPrice: (key: 'min' | 'max', value: string) => void;
   setStock: (key: 'min' | 'max', value: string) => void;
-  // searchProduct: () => void;
+  searchProduct: () => void;
 
   constructor() {
     this.items = [];
@@ -50,6 +51,18 @@ export class Store {
       if (this.settings.sortBy === SortTypes.Popular)
         this.filteredItems = this.filteredItems.sort(
           (a, b) => a.rating - b.rating,
+        );
+      if (this.settings.sortBy === SortTypes.Unpopular)
+        this.filteredItems = this.filteredItems.sort(
+          (a, b) => b.rating - a.rating,
+        );
+      if (this.settings.sortBy === SortTypes.Cheap)
+        this.filteredItems = this.filteredItems.sort(
+          (a, b) => a.price - b.price,
+        );
+      if (this.settings.sortBy === SortTypes.Expensive)
+        this.filteredItems = this.filteredItems.sort(
+          (a, b) => b.price - a.price,
         );
     };
 
@@ -103,6 +116,11 @@ export class Store {
       this.cardView = type;
     };
 
+    this.searchProduct = () => {
+      // const currentKeys = this.filteredItems[].category, this.filteredItems[].brand, this.filteredItems[].title, this.filteredItems[].description, this.filteredItems[].price, this.filteredItems[].discountPercentage, this.filteredItems[].rating, this.filteredItems[].stock
+      // this.filteredItems.forEach(el => el.);
+    };
+
     this.resetSetting = (key) => {
       if (key !== undefined) {
         if (key === 'search') {
@@ -130,6 +148,7 @@ export class Store {
         );
       }
       this.filterItems();
+      showPrice();
     };
 
     this.resetCategoryFIlterValue = (value: string) => {

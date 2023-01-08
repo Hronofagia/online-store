@@ -11,6 +11,7 @@ import {
   showBrand,
   showCategory,
   showPrice,
+  showStock,
 } from './components/filters/filters';
 
 document.body.append(header);
@@ -31,11 +32,13 @@ const fetchData = async (): Promise<void> => {
     store.setItems(element);
   });
   store.filterItems();
-  // store.searchProduct();
+  store.searchProduct();
+  store.sortItems();
   showCards();
   showCategory();
   showBrand();
   showPrice();
+  showStock();
 };
 
 void fetchData();
