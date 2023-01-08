@@ -13,7 +13,7 @@ document.querySelector('.main')?.append(shoppingCartContainer);
 export class ShoppingCartContent {
   createNewPage(): void {
     createCartBlocks();
-    this.render();
+    // this.render();
   }
 
   render(): void {

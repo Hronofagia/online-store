@@ -96,9 +96,6 @@ export function createCartBlocks(): void {
   const buttonPromoCode = createHTML('button', 'button-add-promo-code', 'ADD');
   blockSummaryWrapperDiscount?.append(buttonPromoCode);
 
-  // const appliedPromoCode = createHTML('div', 'wrapper-applied-promoCode');
-  // blockSummaryWrapperDiscount?.append(appliedPromoCode);
-
   const cartTotalButton = createHTML(
     'button',
     'cart-block-total-button',
@@ -111,6 +108,10 @@ export function createCartBlocks(): void {
   blockTitlePages.addEventListener('click', turnPageInCart);
   buttonPromoCode.addEventListener('click', addPromoCode);
   formDiscount.addEventListener('input', checkInput);
+
+  if (shoppingCartContainer !== null) {
+    shoppingCartContent.render();
+  }
 }
 
 export function turnPageInCart(event: Event): void {
