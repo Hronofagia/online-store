@@ -4,11 +4,11 @@
     border-radius: 10px
     border-color: #ecd6e9
     width: 90%
-    height: 120px
+    height: 130px
     margin: 5px auto 6px auto 
     display: grid
-    grid-template-columns: 0.1fr 1fr 0.5fr 3fr 1fr 1fr
-    grid-template-rows: 0.5fr 0.5fr 1fr
+    grid-template-columns: 0.2fr 1fr 0.5fr 3fr 1fr 1fr
+    grid-template-rows: 0.3fr 0.5fr 1fr
     grid-template-areas: "number brand rating category count stock" "number thumbnail title title count price" "number thumbnail descr descr count discount"
 
 .product-cart_index
@@ -23,6 +23,7 @@
 .product_companent_thumbnail
     grid-area: thumbnail
     height: 90%
+    padding: 10px
 
 .product_companent_rating
     grid-area: rating
@@ -79,7 +80,8 @@
     display: -webkit-box
     -webkit-line-clamp: 4
     -webkit-box-orient: vertical
-    height: 80%
+    height: 95%
+    text-align: justify
 
 .product_companent_price,
 .product_companent_stock

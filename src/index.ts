@@ -29,7 +29,6 @@ const fetchData = async (): Promise<void> => {
   });
   store.filterItems();
   showCards();
-  shoppingCartContent.createNewPage();
   showCategory();
   showBrand();
   shoppingCartContent.createNewPage();

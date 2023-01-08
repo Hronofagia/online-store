@@ -31,10 +31,10 @@ export function createProductCardsInCart({
     document.querySelector('.cart-block-total')?.classList.remove('hidden');
 
     for (let i = 0; i < currantArrIdProducts.length; i++) {
-      const currentId = store.findIndex(
+      const currentId = store.items.findIndex(
         (product) => Number(product.id) === currantArrIdProducts[i],
       );
-      const currentElement = store[currentId];
+      const currentElement = store.items[currentId];
       const wrapperProduct = createHTML('div', 'shopping-cart_product');
       wrapperProduct.setAttribute('id', `${currentElement.id}`);
       document.querySelector('.cart-block-products')?.append(wrapperProduct);
