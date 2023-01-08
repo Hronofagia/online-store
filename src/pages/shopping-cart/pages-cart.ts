@@ -10,7 +10,7 @@ export function getArrProductsIdByPages(): number[][] {
   ) as HTMLSelectElement;
 
   const countProductOnPage = Number(
-    selectElement.options[selectElement?.selectedIndex].value,
+    selectElement?.options[selectElement?.selectedIndex].value,
   );
   const IdProducts = currentlocalStorage.getProducts();
   const countPage = Math.ceil(IdProducts.length / countProductOnPage);

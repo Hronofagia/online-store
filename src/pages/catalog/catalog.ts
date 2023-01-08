@@ -112,10 +112,6 @@ export const showCards: () => void = () => {
 };
 
 cardMenu.addEventListener('click', () => {
-  console.log('tfgdgfd');
-
-  // cardProduct.classList.remove('list_product');
-  // cardProduct.classList.add('card_product');
   listMenu.classList.remove('current__menu_icon');
   cardMenu.classList.add('current__menu_icon');
   store.setView(CatalogView.card);

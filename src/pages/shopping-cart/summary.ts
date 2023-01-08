@@ -14,13 +14,13 @@ export function getSummary(): void {
     summaryPrice += store.items[currantId].price;
     summaryCount += 1;
   }
-  (
-    document.querySelector('.cart-block-total-count') as HTMLElement
-  ).innerHTML = `${summaryCount}`;
-  (
-    document.querySelector('.cart-block-total-price') as HTMLElement
-  ).innerHTML = `${summaryPrice}`;
-  (
-    document.querySelector('.price__number') as HTMLElement
-  ).innerHTML = `${summaryPrice}`;
+  const cartBlockCount = document.querySelector('.cart-block-total-count');
+  const cartBlockCountTotalPrice = document.querySelector(
+    '.cart-block-total-price',
+  );
+  const priceNumber = document.querySelector('.price__number');
+  if (cartBlockCount !== null) cartBlockCount.innerHTML = `${summaryCount}`;
+  if (cartBlockCountTotalPrice !== null)
+    cartBlockCountTotalPrice.innerHTML = `${summaryPrice}`;
+  if (priceNumber !== null) priceNumber.innerHTML = `${summaryPrice}`;
 }
