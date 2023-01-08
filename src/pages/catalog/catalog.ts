@@ -23,6 +23,7 @@ searchBox.value = '';
 
 searchBox.addEventListener('input', (e) => {
   store.setSetting('search', (e.target as HTMLInputElement).value);
+  showCards();
 });
 
 searchBox.name = 'search';
@@ -52,10 +53,16 @@ sortContainer.append(maxMinPrice);
 
 const viewMenuContainer = createHTML('div', 'view_menu_container');
 topPanel.append(viewMenuContainer);
-const cardMenu = createHTML('img', 'card_menu_icon') as HTMLImageElement;
+const cardMenu = createHTML(
+  'img',
+  'card_menu_icon menu_icon',
+) as HTMLImageElement;
 cardMenu.src = cardMenuIcon as string;
 viewMenuContainer.append(cardMenu);
-const listMenu = createHTML('img', 'list_menu_icon') as HTMLImageElement;
+const listMenu = createHTML(
+  'img',
+  'list_menu_icon menu_icon',
+) as HTMLImageElement;
 listMenu.src = listMenuIcon as string;
 viewMenuContainer.append(listMenu);
 
@@ -69,6 +76,7 @@ mainContainer.append(filtersContainer);
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
   store.sortItems();
+  console.log(store.cardView);
   store.filteredItems.forEach((el) => {
     const cardProduct = createHTML('div', store.cardView);
     catalogList.append(cardProduct);
@@ -96,19 +104,28 @@ export const showCards: () => void = () => {
       el.id,
     );
     cardProductButtonContainer.append(cardProductButtonAdd);
-    cardMenu.addEventListener('click', () => {
-      cardProduct.classList.remove('list_product');
-      cardProduct.classList.add('card_product');
-      store.setView(CatalogView.card);
-    });
-    listMenu.addEventListener('click', () => {
-      cardProduct.classList.remove('card_product');
-      cardProduct.classList.add('list_product');
-      store.setView(CatalogView.list);
-    });
   });
   foundProducts.textContent = `Found ${store.filteredItems.length} products`;
 };
+
+cardMenu.addEventListener('click', () => {
+  console.log('tfgdgfd');
+
+  // cardProduct.classList.remove('list_product');
+  // cardProduct.classList.add('card_product');
+  listMenu.classList.remove('current__menu_icon');
+  cardMenu.classList.add('current__menu_icon');
+  store.setView(CatalogView.card);
+  showCards();
+});
+listMenu.addEventListener('click', () => {
+  // cardProduct.classList.remove('card_product');
+  // cardProduct.classList.add('list_product');
+  cardMenu.classList.remove('current__menu_icon');
+  listMenu.classList.add('current__menu_icon');
+  store.setView(CatalogView.list);
+  showCards();
+});
 
 appendToFilterContainer(filtersContainer);
 
@@ -132,3 +149,21 @@ sortContainer.addEventListener('input', (event) => {
   }
   showCards();
 });
+
+const options = {
+  lessPopular: 'Less popular',
+  mostPopular: 'Most popular',
+  minMaxPrice: 'Price: Low to high',
+  maxMinPrice: 'Price: High to low',
+};
+
+export const showSort = (): void => {
+  (sortContainer as HTMLSelectElement).value =
+    options[store.settings.sortBy as keyof typeof options];
+};
+
+export const showSearch = (): void => {
+  searchBox.value = store.settings.search;
+};
+
+export const showView = (): void => {};

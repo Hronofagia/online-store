@@ -1,5 +1,5 @@
-import { showPrice } from './components/filters/filters';
 import { CatalogItem, CatalogSettings } from './types';
+import { addQueryParam } from './utils/utils';
 
 export enum SortTypes {
   Popular = 'mostPopular',
@@ -17,7 +17,11 @@ export class Store {
   readonly settings: CatalogSettings;
   filteredItems: CatalogItem[];
   cardView: CatalogView;
-  setSetting: (key: keyof CatalogSettings, data: number | string) => void;
+  setSetting: (
+    key: keyof Omit<CatalogSettings, 'price' | 'stock'>,
+    data: number | string,
+  ) => void;
+
   setView: (type: CatalogView) => void;
   resetSetting: (key?: keyof CatalogSettings) => void;
   setItems: (items: CatalogItem[]) => void;
@@ -27,19 +31,26 @@ export class Store {
   resetBrandFIlterValue: (value: string) => void;
   setPrice: (key: 'min' | 'max', value: string) => void;
   setStock: (key: 'min' | 'max', value: string) => void;
-  searchProduct: () => void;
 
-  constructor() {
+  constructor({
+    price = { min: '15', max: '2271' },
+    search = '',
+    category = [],
+    brand = [],
+    stock = { min: '1', max: '28' },
+    sortBy = SortTypes.Popular,
+    cardView = CatalogView.card,
+  }) {
     this.items = [];
     this.filteredItems = [];
-    this.cardView = CatalogView.card;
+    this.cardView = cardView;
     this.settings = {
-      category: [],
-      brand: [],
-      price: { min: '15', max: '2271' },
-      stock: { min: '1', max: '28' },
-      sortBy: SortTypes.Popular,
-      search: '',
+      category,
+      brand,
+      price,
+      stock,
+      sortBy,
+      search,
     };
 
     this.setItems = (items) => {
@@ -91,13 +102,48 @@ export class Store {
         return +min <= el.stock && el.stock <= +max;
       });
 
+      temporaryItems = temporaryItems.filter((el) => {
+        const regExp = new RegExp(
+          this.settings.search !== '' ? this.settings.search : /./,
+          'i',
+        );
+
+        for (const key in el) {
+          if (
+            (key as keyof CatalogItem) === 'thumbnail' ||
+            (key as keyof CatalogItem) === 'id' ||
+            (key as keyof CatalogItem) === 'images'
+          ) {
+            continue;
+          } else {
+            if (
+              regExp.test(
+                `${
+                  el[
+                    key as keyof Omit<
+                      CatalogItem,
+                      'thumbnail' | 'id' | 'images'
+                    >
+                  ]
+                }`,
+              )
+            )
+              return true;
+          }
+        }
+        return false;
+      });
       this.filteredItems = temporaryItems;
     };
 
     this.setSetting = (key, data) => {
-      if (key === 'search' || key === 'sortBy')
+      if (key === 'search' || key === 'sortBy') {
         this.settings[key] = data as string;
-      else (this.settings[key] as Array<string | number>)?.push(data);
+        addQueryParam(key, this.settings[key]);
+      } else {
+        (this.settings[key] as Array<string | number>)?.push(data);
+        addQueryParam(key, this.settings[key].join(','));
+      }
       this.sortItems();
       this.filterItems();
     };
@@ -105,20 +151,24 @@ export class Store {
     this.setPrice = (key, value) => {
       this.settings.price[key] = value;
       this.filterItems();
+      addQueryParam(
+        'price',
+        `min=${this.settings.price.min}+max=${this.settings.price.max}`,
+      );
     };
 
     this.setStock = (key, value) => {
       this.settings.stock[key] = value;
       this.filterItems();
+      addQueryParam(
+        'stock',
+        `min=${this.settings.stock.min}+max=${this.settings.stock.max}`,
+      );
     };
 
     this.setView = (type) => {
       this.cardView = type;
-    };
-
-    this.searchProduct = () => {
-      // const currentKeys = this.filteredItems[].category, this.filteredItems[].brand, this.filteredItems[].title, this.filteredItems[].description, this.filteredItems[].price, this.filteredItems[].discountPercentage, this.filteredItems[].rating, this.filteredItems[].stock
-      // this.filteredItems.forEach(el => el.);
+      addQueryParam('cardView', type);
     };
 
     this.resetSetting = (key) => {
@@ -148,18 +198,19 @@ export class Store {
         );
       }
       this.filterItems();
-      showPrice();
     };
 
     this.resetCategoryFIlterValue = (value: string) => {
       this.settings.category = this.settings.category.filter(
         (el) => el !== value,
       );
+      addQueryParam('category', this.settings.category.join(','));
       this.filterItems();
     };
 
     this.resetBrandFIlterValue = (value: string) => {
       this.settings.brand = this.settings.brand.filter((el) => el !== value);
+      addQueryParam('brand', this.settings.brand.join(','));
       this.filterItems();
     };
   }

@@ -1,4 +1,3 @@
-import { store } from '../..';
 import { showCards } from '../../pages/catalog/catalog';
 import { createHTML, createSliderInput } from '../../utils/createHTML';
 import './double-slider.sass';
@@ -8,7 +7,7 @@ export const createSlider = (
   setValue: (key: 'min' | 'max', value: string) => void,
   defaultMin: string,
   defaultMax: string,
-): HTMLElement => {
+): [HTMLElement, () => void] => {
   const sliderContainer = createHTML('div', 'slider_container');
   const formControl = createHTML('div', 'form_control');
   sliderContainer.append(formControl);
@@ -109,7 +108,6 @@ export const createSlider = (
       setValue('min', `${from}`);
     }
     showCards();
-    console.log(store);
   }
 
   function controlToSlider(): void {
@@ -126,7 +124,6 @@ export const createSlider = (
       setValue('max', `${from}`);
     }
     showCards();
-    console.log(store);
   }
 
   function getParsed(
@@ -182,5 +179,13 @@ export const createSlider = (
     controlToInput();
   });
 
-  return sliderContainer;
+  const reset = (): void => {
+    fromInput.value = defaultMin;
+    fromSlider.value = defaultMin;
+    toInput.value = defaultMax;
+    toSlider.value = defaultMax;
+    controlFromSlider();
+  };
+
+  return [sliderContainer, reset];
 };

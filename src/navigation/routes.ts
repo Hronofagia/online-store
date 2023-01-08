@@ -18,6 +18,8 @@ export const initRoutes = (): void => {
       {
         url: 'shopping-cart',
         callback: function () {
+          console.log('SHPPING');
+
           appArea.innerHTML = '';
           appArea.appendChild(shoppingCartContainer);
         },
