@@ -6,6 +6,7 @@ import listMenuIcon from '../../assets/list-menu.png';
 import { appendToFilterContainer } from '../../components/filters/filters';
 import { store } from '../..';
 import { SortTypes } from '../../store';
+import { listenerAddAndAbout } from '../shopping-cart/listener-add-products';
 
 export const catalogContainer = createHTML('section', 'catalog_container');
 document.querySelector('.main')?.append(catalogContainer);
@@ -90,7 +91,7 @@ export const showCards: () => void = () => {
     cardProductButtonContainer.append(cardProductButtonAbout);
     const cardProductButtonAdd = createHTML(
       'button',
-      'card_product__button_about',
+      'card_product__button_add',
       'add',
       el.id,
     );
@@ -106,6 +107,8 @@ export const showCards: () => void = () => {
     });
   });
   foundProducts.textContent = `Found ${store.filteredItems.length} products`;
+
+  catalogList.addEventListener('click', listenerAddAndAbout);
 };
 
 appendToFilterContainer(filtersContainer);

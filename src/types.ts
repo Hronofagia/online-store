@@ -1,4 +1,7 @@
-export interface CatalogItem {
+interface IObjectKeys {
+  [key: string]: string | number | string[];
+}
+export interface CatalogItem extends IObjectKeys {
   brand: string;
   category: string;
   description: string;
@@ -26,4 +29,12 @@ export interface Store {
   items: CatalogItem[];
   settings: CatalogSettings;
   setSetting: (key: keyof CatalogSettings, data: number | string) => void;
+}
+
+export interface Promocode {
+  [key: string]: number;
+}
+
+export interface BanksLogo {
+  [key: string]: string;
 }

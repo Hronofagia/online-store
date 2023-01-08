@@ -1,0 +1,181 @@
+.shopping-cart_container
+    display: grid
+    grid-template-columns: 3fr 1fr
+    grid-template-rows: 30px 90%
+    grid-template-areas: "title total" "products total"
+    position: relative
+    margin: 0 5% 0 5%
+    height: 100%
+    margin-top: 20px
+
+.cart-block-title
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    align-items: center
+    justify-items: center
+    width: 92%
+    height: 30px
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 20px
+    grid-area: title
+    border-radius: 10px
+    background-color: rgb(175 164 173 / 15%)
+
+.cart-block-products
+    position: relative
+    grid-area: products
+    margin-top: 20px
+    min-height: 150px
+
+.cart-block-total
+    grid-area: total
+
+.cart-block-title-name
+    font-size: 18px
+    font-weight: 600px
+
+.cart-block-title-pages
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-gap: 5px
+    justify-items: center
+
+.cart-block-previous-page,
+.cart-block-next-page,
+.button-add-promo-code,
+.applied-promoCode-remove,
+.cart-block-total-button
+    cursor: pointer
+
+
+.cart-block-count-on-page
+    font-size: 12px
+    color: rgba(0,0,0,0.7)
+    &::after
+        content: ' products per page'
+    &::before
+        content: 'show '
+
+#select-count-on-page
+    border: none
+    font-size: 12px
+    background: none
+
+.cart-block-total
+    display: grid
+    grid-template-rows: 40px 30px 40px 3fr 5fr
+    background-color: #ecd6e942
+    margin-top: 20px
+    height: min-content
+    width: auto
+    border-radius: 10px
+    border: solid 1px
+    border-color: #ecd6e9
+    justify-items: center
+    grid-gap: 5px
+    align-items: center
+
+.cart-block-total-name
+    height: 100%
+    width: 100%
+    line-height: 200%
+    text-align: center
+    font-size: 20px 
+    background-color: #cf9dc9a8
+    border-radius: 10px
+
+
+.cart-block-total-count
+    &::before
+        content: 'Products: '
+
+.cart-block-total-price
+    &::before
+        content: 'Total: '
+    &::after
+        content: ' €'
+
+.cart-block-total-discount-wrapper
+    display: grid
+    grid-template-columns: 3fr 1fr
+    grid-gap: 10px
+    justify-items: center
+    padding: 5px
+
+.cart-block-total-button,
+.button-add-promo-code
+    width: 90%
+    height: 30px
+    color: white
+    font-weight: 700
+    border-radius: 10px
+    border: none
+
+
+.button-add-promo-code
+    background-color: #23262680
+
+.cart-block-total-button
+    margin-bottom: 10px
+    background-color: #5ea818
+    margin-top: 20px
+    margin-bottom: 20px
+
+.cart-block-total-input
+    height: 25px
+    width: 90%
+    font-size: 14px
+    text-align: center
+    border-radius: 10px
+    border: 1px solid #06060673
+    background-color: white
+    &[type=text]:focus
+        border-color: #a0eb5b
+
+
+
+.empty-cart
+    font-size: 25px
+    text-align: center
+    margin-top: 200px
+    padding-left: 35%
+
+.hidden
+    display: none
+
+.crossed
+    text-decoration: line-through
+    color: red
+    text-align: center
+
+.cart-block-total-new-price
+    color: #588f25
+    font-size: 18px
+    &::before
+        content: 'New Price: '
+    &::after
+        content: ' €'
+
+.applied-promoCode-remove
+    color: red
+    font-size: 12px
+    margin-left: 10px
+
+.promoCode-percent
+    &::before
+        content: ' -'
+    &::after
+        content: ' %'
+
+.promoCode-value
+    &::before
+        content: '  (-'
+    &::after
+        content: ' €)  '
+
+.input-right
+    color: green
+
+.input-right-button
+    background-color: green

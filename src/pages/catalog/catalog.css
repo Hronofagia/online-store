@@ -1,0 +1,32 @@
+.catalog_container {
+  display: flex;
+  padding: 0 10%;
+}
+.catalog_container .top_panel {
+  display: flex;
+}
+.catalog_container .main_container {
+  display: flex;
+}
+.catalog_container .main_container .catalog_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.catalog_container .main_container .catalog_list .card_product {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+.catalog_container .main_container .catalog_list .card_product .card_product__image {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+}
+.catalog_container .main_container .catalog_list .card_product .card_product__button_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.catalog_container .main_container .filters_container {
+  display: flex;
+  flex-direction: column;
+}/*# sourceMappingURL=catalog.css.map */

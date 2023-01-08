@@ -3,11 +3,12 @@ import { header } from './components/header/header';
 import Routing from './navigation/router';
 import { initRoutes } from './navigation/routes';
 import { createHTML } from './utils/createHTML';
-import { LocalStorageUtil } from './utils/localStorage';
 import { showCards } from './pages/catalog/catalog';
+
 import './styles.sass';
 import { Store } from './store';
 import { showBrand, showCategory } from './components/filters/filters';
+import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
 
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
@@ -30,9 +31,7 @@ const fetchData = async (): Promise<void> => {
   showCards();
   showCategory();
   showBrand();
+  shoppingCartContent.createNewPage();
 };
 
 void fetchData();
-
-const localStorageUtil = new LocalStorageUtil();
-localStorageUtil.pullProducts(2);
