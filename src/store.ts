@@ -7,28 +7,37 @@ export enum SortTypes {
   Expensive = 'minMaxPrice',
 }
 
+export enum CatalogView {
+  card = 'card_product',
+  list = 'list_product',
+}
 export class Store {
   readonly items: CatalogItem[];
   readonly settings: CatalogSettings;
   filteredItems: CatalogItem[];
+  cardView: CatalogView;
   setSetting: (key: keyof CatalogSettings, data: number | string) => void;
+  setView: (type: CatalogView) => void;
   resetSetting: (key?: keyof CatalogSettings) => void;
   setItems: (items: CatalogItem[]) => void;
   sortItems: () => void;
   filterItems: () => void;
   resetCategoryFIlterValue: (value: string) => void;
   resetBrandFIlterValue: (value: string) => void;
+  setPrice: (key: 'min' | 'max', value: string) => void;
+  setStock: (key: 'min' | 'max', value: string) => void;
+  // searchProduct: () => void;
 
   constructor() {
     this.items = [];
     this.filteredItems = [];
+    this.cardView = CatalogView.card;
     this.settings = {
       category: [],
       brand: [],
-      price: { min: 15, max: 2271 },
-      stock: { min: 1, max: 28 },
+      price: { min: '15', max: '2271' },
+      stock: { min: '1', max: '28' },
       sortBy: SortTypes.Popular,
-      cardView: [],
       search: '',
     };
 
@@ -61,25 +70,37 @@ export class Store {
       temporaryItems = temporaryItems.filter((el) => {
         const min = this.settings.price.min;
         const max = this.settings.price.max;
-        return min <= el.price && el.price <= max;
+        return +min <= el.price && el.price <= +max;
       });
       temporaryItems = temporaryItems.filter((el) => {
         const min = this.settings.stock.min;
         const max = this.settings.stock.max;
-        return min <= el.stock && el.stock <= max;
+        return +min <= el.stock && el.stock <= +max;
       });
 
       this.filteredItems = temporaryItems;
     };
 
     this.setSetting = (key, data) => {
-      console.log(key, data);
       if (key === 'search' || key === 'sortBy')
         this.settings[key] = data as string;
       else (this.settings[key] as Array<string | number>)?.push(data);
-      console.log(this.settings);
       this.sortItems();
       this.filterItems();
+    };
+
+    this.setPrice = (key, value) => {
+      this.settings.price[key] = value;
+      this.filterItems();
+    };
+
+    this.setStock = (key, value) => {
+      this.settings.stock[key] = value;
+      this.filterItems();
+    };
+
+    this.setView = (type) => {
+      this.cardView = type;
     };
 
     this.resetSetting = (key) => {
@@ -87,9 +108,9 @@ export class Store {
         if (key === 'search') {
           this.settings[key] = '';
         } else if (key === 'price') {
-          this.settings[key] = { min: 15, max: 2271 };
+          this.settings[key] = { min: '15', max: '2271' };
         } else if (key === 'stock') {
-          this.settings[key] = { min: 1, max: 28 };
+          this.settings[key] = { min: '1', max: '28' };
         } else if (key === 'sortBy') {
           this.settings[key] = SortTypes.Popular;
         } else {
@@ -101,8 +122,9 @@ export class Store {
             if (key === 'search') this.settings[key] = '';
             else if (key === 'sortBy') this.settings[key] = SortTypes.Popular;
             else if (key === 'price')
-              this.settings[key] = { min: 15, max: 2271 };
-            else if (key === 'stock') this.settings[key] = { min: 1, max: 28 };
+              this.settings[key] = { min: '15', max: '2271' };
+            else if (key === 'stock')
+              this.settings[key] = { min: '1', max: '28' };
             else this.settings[key] = [];
           },
         );

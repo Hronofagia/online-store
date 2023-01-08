@@ -5,7 +5,7 @@ import cardMenuIcon from '../../assets/card-menu.png';
 import listMenuIcon from '../../assets/list-menu.png';
 import { appendToFilterContainer } from '../../components/filters/filters';
 import { store } from '../..';
-import { SortTypes } from '../../store';
+import { CatalogView, SortTypes } from '../../store';
 
 export const catalogContainer = createHTML('section', 'catalog_container');
 document.querySelector('.main')?.append(catalogContainer);
@@ -69,7 +69,7 @@ mainContainer.append(filtersContainer);
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
   store.filteredItems.forEach((el) => {
-    const cardProduct = createHTML('div', 'card_product');
+    const cardProduct = createHTML('div', store.cardView);
     catalogList.append(cardProduct);
     const cardProductImage = createHTML('div', 'card_product__image');
     cardProductImage.style.backgroundImage = `url("${el.thumbnail}")`;
@@ -98,11 +98,12 @@ export const showCards: () => void = () => {
     cardMenu.addEventListener('click', () => {
       cardProduct.classList.remove('list_product');
       cardProduct.classList.add('card_product');
-      // store.setSetting('cardView');
+      store.setView(CatalogView.card);
     });
     listMenu.addEventListener('click', () => {
       cardProduct.classList.remove('card_product');
       cardProduct.classList.add('list_product');
+      store.setView(CatalogView.list);
     });
   });
   foundProducts.textContent = `Found ${store.filteredItems.length} products`;

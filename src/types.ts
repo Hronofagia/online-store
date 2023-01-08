@@ -15,11 +15,10 @@ export interface CatalogItem {
 export interface CatalogSettings {
   category: string[];
   brand: string[];
-  price: { min: number; max: number };
-  stock: { min: number; max: number };
+  price: { min: string; max: string };
+  stock: { min: string; max: string };
   sortBy: string;
   search: string;
-  cardView: string[];
 }
 
 export interface Store {

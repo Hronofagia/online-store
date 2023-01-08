@@ -1,6 +1,7 @@
 import { store } from '../..';
 import { showCards, updateComponents } from '../../pages/catalog/catalog';
 import { createHTML } from '../../utils/createHTML';
+import { createSlider } from '../double-slider/double-slider';
 import './filters.sass';
 
 const buttonContainer = createHTML('div', 'button_container');
@@ -26,6 +27,15 @@ const priceInputContainer = createHTML('div', 'filter_list_container');
 
 const priceInputContainerTitle = createHTML('p', 'container_title', 'Price');
 priceInputContainer.append(priceInputContainerTitle);
+
+export const showPrice = (): void => {
+  priceInputContainer.append(
+    createSlider(store.settings.price, store.setPrice, '15', '2271'),
+  );
+  priceInputContainer.append(
+    createSlider(store.settings.stock, store.setStock, '1', '28'),
+  );
+};
 
 const stockInputContainer = createHTML('div', 'filter_list_container');
 
