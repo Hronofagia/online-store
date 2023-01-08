@@ -3,9 +3,7 @@ import { header } from './components/header/header';
 import Routing from './navigation/router';
 import { initRoutes } from './navigation/routes';
 import { createHTML } from './utils/createHTML';
-import { LocalStorageUtil } from './utils/localStorage';
 import { showCards, showSearch, showSort } from './pages/catalog/catalog';
-import './styles.sass';
 import { Store } from './store';
 import {
   showBrand,
@@ -13,6 +11,8 @@ import {
   showPrice,
   showStock,
 } from './components/filters/filters';
+import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
+import './styles.sass';
 
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
@@ -68,13 +68,12 @@ const fetchData = async (): Promise<void> => {
   showCards();
   showCategory();
   showBrand();
+
   showPrice();
   showStock();
   showSort();
   showSearch();
+  shoppingCartContent.createNewPage();
 };
 
 void fetchData();
-
-const localStorageUtil = new LocalStorageUtil();
-localStorageUtil.pullProducts(2);

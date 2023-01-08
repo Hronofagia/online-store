@@ -13,17 +13,29 @@ export class LocalStorageUtil {
   }
 
   pullProducts(id: number): {} {
-    let pusheProduct: boolean = false;
+    let pushProduct: boolean = false;
     const ptoducts = this.getProducts();
 
     const index = ptoducts.indexOf(id);
     if (index === -1) {
       ptoducts.push(id);
-      pusheProduct = true;
+      pushProduct = true;
     } else {
       ptoducts.splice(index, 1);
     }
     localStorage.setItem(this.key, JSON.stringify(ptoducts));
-    return { ptoducts, pusheProduct };
+    return { ptoducts, pushProduct };
+  }
+
+  removeProducts(id: number): {} {
+    const ptoducts = this.getProducts();
+    const index = ptoducts.indexOf(id);
+
+    ptoducts.splice(index, 1);
+
+    localStorage.setItem(this.key, JSON.stringify(ptoducts));
+    return { ptoducts };
   }
 }
+
+export const currentlocalStorage = new LocalStorageUtil();
