@@ -1,12 +1,21 @@
 import { store } from '../..';
-import { showCards, updateComponents } from '../../pages/catalog/catalog';
+import {
+  showCards,
+  showSearch,
+  showSort,
+  updateComponents,
+} from '../../pages/catalog/catalog';
 import { createHTML } from '../../utils/createHTML';
+import { resetAllParams } from '../../utils/utils';
+import { createSlider } from '../double-slider/double-slider';
 import './filters.sass';
+
+const resetSliders: Array<() => void> = [];
 
 const buttonContainer = createHTML('div', 'button_container');
 const resetButton = createHTML('button', 'filter_button', 'Reset filters');
 buttonContainer.append(resetButton);
-const saveButton = createHTML('button', 'filter_button', 'Save filters');
+export const saveButton = createHTML('button', 'filter_button', 'Save filters');
 buttonContainer.append(saveButton);
 
 const categoryListContainer = createHTML('div', 'filter_list_container');
@@ -26,6 +35,28 @@ const priceInputContainer = createHTML('div', 'filter_list_container');
 
 const priceInputContainerTitle = createHTML('p', 'container_title', 'Price');
 priceInputContainer.append(priceInputContainerTitle);
+
+export const showPrice = (): void => {
+  const [priceSlider, resetSlider] = createSlider(
+    store.settings.price,
+    store.setPrice,
+    '15',
+    '2271',
+  );
+  resetSliders.push(resetSlider);
+  priceInputContainer.append(priceSlider);
+};
+
+export const showStock = (): void => {
+  const [stockSlider, resetSlider] = createSlider(
+    store.settings.stock,
+    store.setStock,
+    '1',
+    '28',
+  );
+  resetSliders.push(resetSlider);
+  stockInputContainer.append(stockSlider);
+};
 
 const stockInputContainer = createHTML('div', 'filter_list_container');
 
@@ -47,8 +78,12 @@ resetButton.addEventListener('click', () => {
   document.querySelectorAll('.chosen_item').forEach((el) => {
     el.classList.remove('chosen_item');
   });
+  resetSliders.forEach((reset) => reset());
   updateComponents();
   showCards();
+  showSort();
+  showSearch();
+  resetAllParams();
 });
 
 export const showCategory = (): void => {
@@ -104,3 +139,15 @@ export const showBrand = (): void => {
   brandContainer.append(...items);
   brandListContainer.append(brandWrapper);
 };
+
+saveButton.addEventListener('click', () => {
+  const textUrl = window.location.href;
+  navigator.clipboard
+    .writeText(textUrl)
+    .then(() => {
+      saveButton.textContent = 'Copy!';
+    })
+    .catch((err) => {
+      console.error('Error in copying text: ', err);
+    });
+});

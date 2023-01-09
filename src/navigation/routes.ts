@@ -1,4 +1,5 @@
 import { store } from '..';
+import { errorContainer } from '../pages/404-page/404-page';
 import { catalogContainer } from '../pages/catalog/catalog';
 import { productPageContainer } from '../pages/product-page/product-page';
 import { shoppingCartContainer } from '../pages/shopping-cart/shopping-cart';
@@ -23,6 +24,13 @@ export const initRoutes = (): void => {
           appArea.appendChild(shoppingCartContainer);
         },
       },
+      {
+        url: '404-page',
+        callback: function () {
+          appArea.innerHTML = '';
+          appArea.appendChild(errorContainer);
+        },
+      },
     ];
 
     const CountProducts = store.items.length;
@@ -36,6 +44,5 @@ export const initRoutes = (): void => {
       };
       routes.push(item);
     }
-    console.log(routes);
   }
 };

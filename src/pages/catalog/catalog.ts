@@ -3,9 +3,12 @@ import './catalog.sass';
 import searchIcon from '../../assets/search-button.svg';
 import cardMenuIcon from '../../assets/card-menu.png';
 import listMenuIcon from '../../assets/list-menu.png';
-import { appendToFilterContainer } from '../../components/filters/filters';
+import {
+  appendToFilterContainer,
+  saveButton,
+} from '../../components/filters/filters';
 import { store } from '../..';
-import { SortTypes } from '../../store';
+import { CatalogView, SortTypes } from '../../store';
 import { listenerAddAndAbout } from '../shopping-cart/listener-add-products';
 
 export const catalogContainer = createHTML('section', 'catalog_container');
@@ -24,6 +27,7 @@ searchBox.value = '';
 
 searchBox.addEventListener('input', (e) => {
   store.setSetting('search', (e.target as HTMLInputElement).value);
+  showCards();
 });
 
 searchBox.name = 'search';
@@ -53,10 +57,16 @@ sortContainer.append(maxMinPrice);
 
 const viewMenuContainer = createHTML('div', 'view_menu_container');
 topPanel.append(viewMenuContainer);
-const cardMenu = createHTML('img', 'card_menu_icon') as HTMLImageElement;
+const cardMenu = createHTML(
+  'img',
+  'card_menu_icon menu_icon current__menu_icon',
+) as HTMLImageElement;
 cardMenu.src = cardMenuIcon as string;
 viewMenuContainer.append(cardMenu);
-const listMenu = createHTML('img', 'list_menu_icon') as HTMLImageElement;
+const listMenu = createHTML(
+  'img',
+  'list_menu_icon menu_icon',
+) as HTMLImageElement;
 listMenu.src = listMenuIcon as string;
 viewMenuContainer.append(listMenu);
 
@@ -69,8 +79,9 @@ mainContainer.append(filtersContainer);
 
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
+  store.sortItems();
   store.filteredItems.forEach((el) => {
-    const cardProduct = createHTML('div', 'card_product');
+    const cardProduct = createHTML('div', store.cardView);
     catalogList.append(cardProduct);
     const cardProductImage = createHTML('div', 'card_product__image');
     cardProductImage.style.backgroundImage = `url("${el.thumbnail}")`;
@@ -96,20 +107,24 @@ export const showCards: () => void = () => {
       el.id,
     );
     cardProductButtonContainer.append(cardProductButtonAdd);
-    cardMenu.addEventListener('click', () => {
-      cardProduct.classList.remove('list_product');
-      cardProduct.classList.add('card_product');
-      // store.setSetting('cardView');
-    });
-    listMenu.addEventListener('click', () => {
-      cardProduct.classList.remove('card_product');
-      cardProduct.classList.add('list_product');
-    });
   });
   foundProducts.textContent = `Found ${store.filteredItems.length} products`;
-
+  saveButton.textContent = 'Save filters';
   catalogList.addEventListener('click', listenerAddAndAbout);
 };
+
+cardMenu.addEventListener('click', () => {
+  listMenu.classList.remove('current__menu_icon');
+  cardMenu.classList.add('current__menu_icon');
+  store.setView(CatalogView.card);
+  showCards();
+});
+listMenu.addEventListener('click', () => {
+  cardMenu.classList.remove('current__menu_icon');
+  listMenu.classList.add('current__menu_icon');
+  store.setView(CatalogView.list);
+  showCards();
+});
 
 appendToFilterContainer(filtersContainer);
 
@@ -117,6 +132,37 @@ export const updateComponents = (): void => {
   searchBox.value = store.settings.search;
 };
 
-mostPopular.addEventListener('click', () => {
-  store.setSetting('sortBy', SortTypes.Popular);
+sortContainer.addEventListener('input', (event) => {
+  const currentSort = (event.target as HTMLSelectElement).value;
+  if (currentSort === 'Most popular') {
+    store.setSetting('sortBy', SortTypes.Popular);
+  }
+  if (currentSort === 'Less popular') {
+    store.setSetting('sortBy', SortTypes.Unpopular);
+  }
+  if (currentSort === 'Price: Low to high') {
+    store.setSetting('sortBy', SortTypes.Cheap);
+  }
+  if (currentSort === 'Price: High to low') {
+    store.setSetting('sortBy', SortTypes.Expensive);
+  }
+  showCards();
 });
+
+const options = {
+  lessPopular: 'Less popular',
+  mostPopular: 'Most popular',
+  minMaxPrice: 'Price: Low to high',
+  maxMinPrice: 'Price: High to low',
+};
+
+export const showSort = (): void => {
+  (sortContainer as HTMLSelectElement).value =
+    options[store.settings.sortBy as keyof typeof options];
+};
+
+export const showSearch = (): void => {
+  searchBox.value = store.settings.search;
+};
+
+export const showView = (): void => {};

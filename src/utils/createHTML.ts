@@ -27,6 +27,22 @@ export const createInput = (
   return element;
 };
 
+export const createSliderInput = (
+  className: string,
+  type: string,
+  value: string,
+  min: string,
+  max: string,
+): HTMLInputElement => {
+  const element = document.createElement('input');
+  element.className = className;
+  element.type = type;
+  element.min = min;
+  element.max = max;
+  element.value = value;
+  return element;
+};
+
 export const createOption = (
   text: string,
   selected?: boolean,

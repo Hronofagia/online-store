@@ -5,12 +5,9 @@ import './header.sass';
 
 export const header = createHTML('header', 'header');
 document.body.append(header);
-const logo = createHTML('div', 'logo');
+const logo = createHTML('a', 'logo', 'ONLINE STORE') as HTMLAnchorElement;
+logo.href = '/#';
 header.append(logo);
-const logoImg = createHTML('div', 'logo__img');
-logo.append(logoImg);
-const logoTitle = createHTML('div', 'logo__title', 'online store');
-logo.append(logoTitle);
 const price = createHTML('div', 'price');
 header.append(price);
 const priceTitle = createHTML('p', 'price__title', 'Cart total:');
