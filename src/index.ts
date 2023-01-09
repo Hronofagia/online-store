@@ -9,14 +9,11 @@ import './styles.sass';
 import { Store } from './store';
 import { showBrand, showCategory } from './components/filters/filters';
 import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
-// import { productPage } from './pages/product-page/product-page';
 import { createProductPageContent } from './pages/product-page/create-body';
 
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
 document.body.append(footer);
-
-export const SAVED_ID: string[] = []; // ??????????????????????????????????????????????
 
 export const store = new Store();
 const fetchData = async (): Promise<void> => {
@@ -39,11 +36,7 @@ const fetchData = async (): Promise<void> => {
   showBrand();
 
   shoppingCartContent.createNewPage();
-  shoppingCartContent.render();
-  // productPage.render();
   createProductPageContent();
 };
 
 void fetchData();
-// initRoutes();
-// Routing();

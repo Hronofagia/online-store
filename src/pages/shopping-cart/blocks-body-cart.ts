@@ -1,12 +1,19 @@
 import { createHTML } from '../../utils/createHTML';
 import './shopping-cart.sass';
 import './item-ptoduct.sass';
-import { shoppingCartContainer, shoppingCartContent } from './shopping-cart';
-import { currentlocalStorage } from '../../utils/localStorage';
 import { addPromoCode, checkInput } from './promo-code';
 import { modalWindow } from '../modal/modal';
+import { turnPageInCart } from './listener-turnPageInCart';
+import { changeCountProductOnPage } from './listener-CountProductOnPage';
 
 export function createCartBlocks(): void {
+  const shoppingCartContainer = document.querySelector(
+    '.shopping-cart_container',
+  );
+  if (shoppingCartContainer !== null) {
+    shoppingCartContainer.innerHTML = '';
+  }
+
   const blockTitle = createHTML('div', 'cart-block-title');
   const bloclProducts = createHTML('div', 'cart-block-products');
   const blockSummary = createHTML('div', 'cart-block-total');
@@ -108,43 +115,4 @@ export function createCartBlocks(): void {
   blockTitlePages.addEventListener('click', turnPageInCart);
   buttonPromoCode.addEventListener('click', addPromoCode);
   formDiscount.addEventListener('input', checkInput);
-}
-
-export function turnPageInCart(event: Event): void {
-  const NumberPage = document.querySelector('.cart-count-pages');
-
-  const selectElement = document.querySelector(
-    '#select-count-on-page',
-  ) as HTMLSelectElement;
-  const countProductOnPage = Number(
-    selectElement.options[selectElement?.selectedIndex].value,
-  );
-
-  const IdProducts = currentlocalStorage.getProducts();
-  const countPage = Math.ceil(IdProducts.length / Number(countProductOnPage));
-
-  if (
-    (event.target as HTMLElement).closest('.cart-block-previous-page') !==
-      null &&
-    Number(NumberPage?.innerHTML) > 1
-  ) {
-    (document.querySelector('.cart-count-pages') as Element).innerHTML = `${
-      Number(NumberPage?.innerHTML) - 1
-    }`;
-    shoppingCartContent.render();
-  }
-
-  if (
-    (event.target as HTMLElement).closest('.cart-block-next-page') !== null &&
-    Number(NumberPage?.innerHTML) < countPage
-  ) {
-    (document.querySelector('.cart-count-pages') as Element).innerHTML = `${
-      Number(NumberPage?.innerHTML) + 1
-    }`;
-    shoppingCartContent.render();
-  }
-}
-
-export function changeCountProductOnPage(event: Event): void {
-  shoppingCartContent.render();
 }

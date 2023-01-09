@@ -1,6 +1,6 @@
 import { createHTML } from '../../utils/createHTML';
 import { createCartBlocks } from './blocks-body-cart';
-import { fillCartPage as fillBlockOfProducts } from './pages-cart';
+import { fillCartPage } from './pages-cart';
 import { resetCart } from './resetCart';
 import { getSummary } from './summary';
 
@@ -13,11 +13,12 @@ document.querySelector('.main')?.append(shoppingCartContainer);
 export class ShoppingCartContent {
   createNewPage(): void {
     createCartBlocks();
+    fillCartPage();
     getSummary();
   }
 
   render(): void {
-    fillBlockOfProducts();
+    fillCartPage();
     getSummary();
   }
 
@@ -30,6 +31,11 @@ export class ShoppingCartContent {
   }
 }
 
+export function all(): void {
+  createCartBlocks();
+  fillCartPage();
+  getSummary();
+}
 export const shoppingCartContent = new ShoppingCartContent();
 
 document.querySelector('.shopping-cart__img')?.addEventListener('click', () => {

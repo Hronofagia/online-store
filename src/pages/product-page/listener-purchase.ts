@@ -1,6 +1,9 @@
 import { currentlocalStorage } from '../../utils/localStorage';
 import { modalWindow } from '../modal/modal';
+import { createCartBlocks } from '../shopping-cart/blocks-body-cart';
+import { fillCartPage } from '../shopping-cart/pages-cart';
 import { shoppingCartContent } from '../shopping-cart/shopping-cart';
+import { getSummary } from '../shopping-cart/summary';
 import { createProductPageContent } from './create-body';
 
 export function buyOnProductPage(event: Event): void {
@@ -30,8 +33,13 @@ export function buyOnProductPage(event: Event): void {
 
 window.addEventListener('hashchange', () => {
   const pathURL = document.location.href;
-  const name = pathURL.split('/').slice(-2, -1).join('/');
-  if (name === '#product-page') {
+  const name = pathURL.split('#').slice(-1).join('/').split('/')[0];
+  if (name === 'product-page') {
     createProductPageContent();
+  }
+  if (name === 'shopping-cart') {
+    createCartBlocks();
+    fillCartPage();
+    getSummary();
   }
 });
