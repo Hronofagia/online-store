@@ -7,23 +7,41 @@
   flex-direction: column
   width: 100%
   .container_title
-    color: red
+    font-size: 24px
     padding: 10px 0
   .filters_wrapper
-    border: solid black 1px
+    border: solid 2px
+    border-radius: 10px
+    border-color: #ecd6e9
     height: 200px
-    overflow: scroll
+    width: 100%
+    padding: 10px
+    overflow: hidden
+    overflow-y: auto
     .filters_container
-      width: 100%
-      .filter_item
-        width: 100%
       .chosen_item
         color: red
   .slider_container
+    display: flex
+    border: solid 2px
+    border-radius: 10px
+    border-color: #ecd6e9
+    height: 100px
     width: 100%
-
-  
-
-  
-  
-  
+    .range_container
+      .sliders_control
+        display: flex
+        align-items: center
+        .from_slider
+          width: 150px
+          align-items: center
+        .to_slider
+          width: 150px
+          align-items: center
+    .form_control
+      .form_control_container
+        align-items: center
+        .form_control_container__input
+          width: 65px
+          align-items: center
+          padding-bottom: 15px

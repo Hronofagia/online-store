@@ -15,7 +15,7 @@ const resetSliders: Array<() => void> = [];
 const buttonContainer = createHTML('div', 'button_container');
 const resetButton = createHTML('button', 'filter_button', 'Reset filters');
 buttonContainer.append(resetButton);
-const saveButton = createHTML('button', 'filter_button', 'Save filters');
+export const saveButton = createHTML('button', 'filter_button', 'Save filters');
 buttonContainer.append(saveButton);
 
 const categoryListContainer = createHTML('div', 'filter_list_container');
@@ -140,3 +140,15 @@ export const showBrand = (): void => {
   brandContainer.append(...items);
   brandListContainer.append(brandWrapper);
 };
+
+saveButton.addEventListener('click', () => {
+  const textUrl = window.location.href;
+  navigator.clipboard
+    .writeText(textUrl)
+    .then(() => {
+      saveButton.textContent = 'Copy!';
+    })
+    .catch((err) => {
+      console.error('Error in copying text: ', err);
+    });
+});

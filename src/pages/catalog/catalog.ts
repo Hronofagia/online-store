@@ -3,7 +3,10 @@ import './catalog.sass';
 import searchIcon from '../../assets/search-button.svg';
 import cardMenuIcon from '../../assets/card-menu.png';
 import listMenuIcon from '../../assets/list-menu.png';
-import { appendToFilterContainer } from '../../components/filters/filters';
+import {
+  appendToFilterContainer,
+  saveButton,
+} from '../../components/filters/filters';
 import { store } from '../..';
 import { CatalogView, SortTypes } from '../../store';
 import { listenerAddAndAbout } from '../shopping-cart/listener-add-products';
@@ -107,7 +110,7 @@ export const showCards: () => void = () => {
     cardProductButtonContainer.append(cardProductButtonAdd);
   });
   foundProducts.textContent = `Found ${store.filteredItems.length} products`;
-
+  saveButton.textContent = 'Save filters';
   catalogList.addEventListener('click', listenerAddAndAbout);
 };
 

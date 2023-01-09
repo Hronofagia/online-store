@@ -69,7 +69,7 @@ export const createSlider = (
 
   function controlFromInput(): void {
     const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromInput, toInput, '#D39CBD', '#C850C0', toSlider);
     if (from > to) {
       fromSlider.value = `${to}`;
       fromInput.value = `${to}`;
@@ -83,7 +83,7 @@ export const createSlider = (
 
   function controlToInput(): void {
     const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', toSlider);
+    // fillSlider(fromInput, toInput, '#FFCC70', '#C850C0', toSlider);
     setToggleAccessible(toInput);
     if (from <= to) {
       toSlider.value = `${to}`;
@@ -98,7 +98,7 @@ export const createSlider = (
 
   function controlFromSlider(): void {
     const [from, to] = getParsed(fromSlider, toSlider);
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#D39CBD', '#C850C0', toSlider);
     if (from > to) {
       fromSlider.value = `${to}`;
       fromInput.value = `${to}`;
@@ -112,7 +112,7 @@ export const createSlider = (
 
   function controlToSlider(): void {
     const [from, to] = getParsed(fromSlider, toSlider);
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#D39CBD', '#C850C0', toSlider);
     setToggleAccessible(toSlider);
     if (from <= to) {
       toSlider.value = `${to}`;
@@ -163,7 +163,7 @@ export const createSlider = (
     }
   }
 
-  fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+  fillSlider(fromSlider, toSlider, '#D39CBD', '#C850C0', toSlider);
   setToggleAccessible(toSlider);
 
   fromSlider.addEventListener('input', () => {

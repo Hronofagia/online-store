@@ -68,7 +68,6 @@ const fetchData = async (): Promise<void> => {
   showCards();
   showCategory();
   showBrand();
-
   showPrice();
   showStock();
   showSort();
