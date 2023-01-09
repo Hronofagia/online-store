@@ -1,7 +1,8 @@
+@import "../../styles"
+  
 .button_container
   display: flex
-  .filter_button
-    width: 50%
+  justify-content: space-evenly
 .filter_list_container
   display: flex
   flex-direction: column
@@ -19,8 +20,13 @@
     overflow: hidden
     overflow-y: auto
     .filters_container
+      width: 100%
+      .filter_item
+        color: gray
+        width: 100%
+        wrap: wrap
       .chosen_item
-        color: red
+        color: black
   .slider_container
     display: flex
     border: solid 2px
@@ -36,7 +42,7 @@
           width: 150px
           align-items: center
         .to_slider
-          width: 150px
+          width: 170px
           align-items: center
     .form_control
       .form_control_container
@@ -45,3 +51,14 @@
           width: 65px
           align-items: center
           padding-bottom: 15px
+
+button
+  background-color: $purple
+  height: 40px
+  padding: 5px
+  border: none
+  width: 45%
+  border-radius: 10px
+  color: white
+  cursor: pointer
+  font-size: 16px

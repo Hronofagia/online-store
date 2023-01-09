@@ -59,7 +59,7 @@ const viewMenuContainer = createHTML('div', 'view_menu_container');
 topPanel.append(viewMenuContainer);
 const cardMenu = createHTML(
   'img',
-  'card_menu_icon menu_icon',
+  'card_menu_icon menu_icon current__menu_icon',
 ) as HTMLImageElement;
 cardMenu.src = cardMenuIcon as string;
 viewMenuContainer.append(cardMenu);

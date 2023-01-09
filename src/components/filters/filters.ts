@@ -37,7 +37,6 @@ const priceInputContainerTitle = createHTML('p', 'container_title', 'Price');
 priceInputContainer.append(priceInputContainerTitle);
 
 export const showPrice = (): void => {
-  // priceInputContainer.removeChild('sliderContainer');
   const [priceSlider, resetSlider] = createSlider(
     store.settings.price,
     store.setPrice,
