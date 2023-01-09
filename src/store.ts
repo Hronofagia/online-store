@@ -124,7 +124,7 @@ export class Store {
                       CatalogItem,
                       'thumbnail' | 'id' | 'images'
                     >
-                  ]
+                  ] as string
                 }`,
               )
             )

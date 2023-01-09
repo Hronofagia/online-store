@@ -14,6 +14,10 @@ import {
 import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
 import './styles.sass';
 
+window.addEventListener('beforeunload', (event) => {
+  console.log(event);
+  event.preventDefault();
+});
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
 document.body.append(footer);
@@ -51,7 +55,6 @@ const initStoreValues = Array.from(searchKeys).reduce((res, key) => {
 }, {});
 
 export const store = new Store(initStoreValues ?? {});
-console.log(store);
 
 const fetchData = async (): Promise<void> => {
   const data = await (await fetch('./data/categories.json')).json();

@@ -80,7 +80,6 @@ mainContainer.append(filtersContainer);
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
   store.sortItems();
-  console.log(store.cardView);
   store.filteredItems.forEach((el) => {
     const cardProduct = createHTML('div', store.cardView);
     catalogList.append(cardProduct);

@@ -1,3 +1,4 @@
+import { errorContainer } from '../pages/404-page/404-page';
 import { catalogContainer } from '../pages/catalog/catalog';
 import { productPageContainer } from '../pages/product-page/product-page';
 import { shoppingCartContainer } from '../pages/shopping-cart/shopping-cart';
@@ -18,8 +19,6 @@ export const initRoutes = (): void => {
       {
         url: 'shopping-cart',
         callback: function () {
-          console.log('SHPPING');
-
           appArea.innerHTML = '';
           appArea.appendChild(shoppingCartContainer);
         },
@@ -29,6 +28,14 @@ export const initRoutes = (): void => {
         callback: function () {
           appArea.innerHTML = '';
           appArea.appendChild(productPageContainer);
+        },
+      },
+      {
+        // this route should locate at the end of the array
+        url: '404-page',
+        callback: function () {
+          appArea.innerHTML = '';
+          appArea.appendChild(errorContainer);
         },
       },
     ];
