@@ -1,6 +1,7 @@
 import { currentlocalStorage } from '../../utils/localStorage';
 import { modalWindow } from '../modal/modal';
 import { shoppingCartContent } from '../shopping-cart/shopping-cart';
+import { createProductPageContent } from './create-body';
 
 export function buyOnProductPage(event: Event): void {
   if ((event.target as HTMLElement).closest('.product-button-add') !== null) {
@@ -26,3 +27,11 @@ export function buyOnProductPage(event: Event): void {
     modalWindow.render();
   }
 }
+
+window.addEventListener('hashchange', () => {
+  const pathURL = document.location.href;
+  const name = pathURL.split('/').slice(-2, -1).join('/');
+  if (name === '#product-page') {
+    createProductPageContent();
+  }
+});

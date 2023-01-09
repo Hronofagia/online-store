@@ -14,6 +14,10 @@ export function createProductPageContent(): void {
     (product) => Number(product.id) === numberId,
   );
 
+  (
+    document.querySelector('.product-page_container') as HTMLElement
+  ).innerHTML = ``;
+
   const productWrapper = createHTML('div', 'product-page-wrapper');
   const productTitle = createHTML(
     'div',
