@@ -1,31 +1,31 @@
 import { createProductCardsInCart } from './create-product-cart';
 import { currentlocalStorage } from '../../utils/localStorage';
 
-let arrPages: number[][] = [];
-
-export function getArrProductsIdByPages(): number[][] {
-  arrPages = [];
+export function fillCartPage(): void {
+  const arrPages: number[][] = [];
   const selectElement = document.querySelector(
     '#select-count-on-page',
   ) as HTMLSelectElement;
 
-  const countProductOnPage = Number(
-    selectElement.options[selectElement?.selectedIndex].value,
-  );
-  const IdProducts = currentlocalStorage.getProducts();
-  const countPage = Math.ceil(IdProducts.length / countProductOnPage);
-  for (let i = 0; i < countPage; i++) {
-    let IdSet = [];
-    IdSet = IdProducts.slice(
-      i * countProductOnPage,
-      i * countProductOnPage + countProductOnPage,
+  if (selectElement !== null) {
+    const countProductOnPage = Number(
+      selectElement.options[selectElement?.selectedIndex].value,
     );
-    arrPages.push(IdSet);
+    const IdProducts = currentlocalStorage.getProducts();
+    const countPage = Math.ceil(IdProducts.length / countProductOnPage);
+    for (let i = 0; i < countPage; i++) {
+      let IdSet = [];
+      IdSet = IdProducts.slice(
+        i * countProductOnPage,
+        i * countProductOnPage + countProductOnPage,
+      );
+      arrPages.push(IdSet);
+    }
+    getNumberCartPage(arrPages);
   }
-  return arrPages;
 }
 
-export function getNumberCartPage(): void {
+export function getNumberCartPage(arrPages: number[][]): void {
   clearCartPage();
 
   let currentPage = Number(

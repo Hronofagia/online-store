@@ -1,25 +1,30 @@
 import { store } from '../..';
 import { createHTML } from '../../utils/createHTML';
 import { currentlocalStorage } from '../../utils/localStorage';
-// import { buyOnProductPage } from './listener-add-product';
-// import { changeMainImg } from './listener-flipping-img';
-import { productPageContainer } from './product-page';
+import { changeMainImg } from './listener-flipping-img';
+import { buyOnProductPage } from './listener-purchase';
+
 import './product-page.sass';
 
-export function createProductPageContent(currantId: string): void {
-  const numberId = Number(currantId);
+export function createProductPageContent(): void {
+  const pathURL = document.location.href;
+  const numberId = Number(pathURL.split('/').slice(-1).join());
+
+  const numberInStoreARR = store.items.findIndex(
+    (product) => Number(product.id) === numberId,
+  );
 
   const productWrapper = createHTML('div', 'product-page-wrapper');
   const productTitle = createHTML(
     'div',
     'product-page-title',
-    `Store > ${store.items[numberId].category} > ${store.items[numberId].brand} > ${store.items[numberId].title}`,
+    `Store > ${store.items[numberInStoreARR].category} > ${store.items[numberInStoreARR].brand} > ${store.items[numberInStoreARR].title}`,
   );
   const productImages = createHTML('div', 'product-page-images');
   const productMainImages = createHTML('div', 'product-page-main-imag');
   const blockDescription = createHTML('div', 'product-page-block-description');
   const blockPrice = createHTML('div', 'product-page-block-price');
-  productPageContainer?.append(productWrapper);
+  document.querySelector('.product-page_container')?.append(productWrapper);
   productWrapper?.append(productTitle);
   productWrapper?.append(productImages);
   productWrapper?.append(productMainImages);
@@ -29,11 +34,11 @@ export function createProductPageContent(currantId: string): void {
   const mainImg = createHTML(
     'img',
     'item-main-imag',
-    `${store.items[numberId].thumbnail}`,
+    `${store.items[numberInStoreARR].thumbnail}`,
   );
   productMainImages?.append(mainImg);
 
-  const images = store.items[numberId].images;
+  const images = store.items[numberInStoreARR].images;
 
   for (let i = 0; i < images.length; i++) {
     const ImgWrapper = createHTML('div', 'product-page-img');
@@ -47,7 +52,7 @@ export function createProductPageContent(currantId: string): void {
   const ImgItem = createHTML(
     'img',
     'item-img',
-    `${store.items[numberId].thumbnail}`,
+    `${store.items[numberInStoreARR].thumbnail}`,
   );
   ImgItem.setAttribute('id', `${images.length + 1}`);
   productImages.append(ImgWrapper);
@@ -56,32 +61,32 @@ export function createProductPageContent(currantId: string): void {
   const title = createHTML(
     'div',
     'description-item',
-    `${store.items[numberId].title}`,
+    `${store.items[numberInStoreARR].title}`,
   );
   const brand = createHTML(
     'div',
     'description-item',
-    `Brand: ${store.items[numberId].brand}`,
+    `Brand: ${store.items[numberInStoreARR].brand}`,
   );
   const category = createHTML(
     'div',
     'description-item',
-    `Category: ${store.items[numberId].category}`,
+    `Category: ${store.items[numberInStoreARR].category}`,
   );
   const rating = createHTML(
     'div',
     'description-item',
-    `\u2B50 ${store.items[numberId].rating}`,
+    `\u2B50 ${store.items[numberInStoreARR].rating}`,
   );
   const stock = createHTML(
     'div',
     'description-item',
-    `Stock: ${store.items[numberId].stock}`,
+    `Stock: ${store.items[numberInStoreARR].stock}`,
   );
   const discount = createHTML(
     'div',
     'description-item',
-    `- ${store.items[numberId].discountPercentage} %`,
+    `- ${store.items[numberInStoreARR].discountPercentage} %`,
   );
   blockDescription.append(title);
   blockDescription.append(brand);
@@ -93,7 +98,7 @@ export function createProductPageContent(currantId: string): void {
   const price = createHTML(
     'div',
     'product-page-price',
-    `${store.items[numberId].price} €`,
+    `${store.items[numberInStoreARR].price} €`,
   );
 
   const buttonBlock = createHTML('div', 'product-button-block');
@@ -101,23 +106,23 @@ export function createProductPageContent(currantId: string): void {
 
   const buttonAdd = createHTML('button', 'product-button-add', 'ADD TO CART');
   const buttonBuyNow = createHTML('button', 'product-button-buy', 'BUY NOW');
-  if (!currentlocalStorage.getProducts().includes(numberId)) {
+  if (!currentlocalStorage.getProducts().includes(numberInStoreARR)) {
     buttonAdd.classList.add('active-button');
   }
   buttonBuyNow.classList.add('active-button');
   blockPrice.append(price);
   buttonBlock.append(buttonAdd);
   buttonBlock.append(buttonBuyNow);
-  buttonAdd.setAttribute('id', `${currantId}`);
-  buttonBuyNow.setAttribute('id', `${currantId}`);
+  buttonAdd.setAttribute('id', `${store.items[numberInStoreARR].id}`);
+  buttonBuyNow.setAttribute('id', `${store.items[numberInStoreARR].id}`);
 
   const description = createHTML(
     'div',
     'description-text',
-    `${store.items[numberId].description}`,
+    `${store.items[numberInStoreARR].description}`,
   );
   productWrapper.append(description);
 
-  //   buttonBlock.addEventListener('click', buyOnProductPage);
-  //   productImages.addEventListener('click', changeMainImg);
+  buttonBlock.addEventListener('click', buyOnProductPage);
+  productImages.addEventListener('click', changeMainImg);
 }

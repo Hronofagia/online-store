@@ -108,10 +108,6 @@ export function createCartBlocks(): void {
   blockTitlePages.addEventListener('click', turnPageInCart);
   buttonPromoCode.addEventListener('click', addPromoCode);
   formDiscount.addEventListener('input', checkInput);
-
-  if (shoppingCartContainer !== null) {
-    shoppingCartContent.render();
-  }
 }
 
 export function turnPageInCart(event: Event): void {
