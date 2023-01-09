@@ -19,6 +19,6 @@ export function listenerAddAndAbout(event: Event): void {
     null
   ) {
     const currantId = String((event.target as HTMLElement).getAttribute('id'));
-    window.location.href = `/dist/#product-page/${currantId}`;
+    window.location.href = `/#product-page/${currantId}`;
   }
 }

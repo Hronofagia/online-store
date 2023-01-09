@@ -39,6 +39,6 @@ export function all(): void {
 export const shoppingCartContent = new ShoppingCartContent();
 
 document.querySelector('.shopping-cart__img')?.addEventListener('click', () => {
-  window.location.href = '/dist/#shopping-cart';
+  window.location.href = '/#shopping-cart';
   shoppingCartContent.render();
 });

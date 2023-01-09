@@ -16,7 +16,6 @@ import {
 import './styles.sass';
 
 window.addEventListener('beforeunload', (event) => {
-  console.log(event);
   event.preventDefault();
 });
 document.body.append(header);

@@ -11,8 +11,6 @@ const ArrBanksLogo: BanksLogo = {
 
 export function splitCVV(event: Event): void {
   const valueStr = (event.target as HTMLInputElement).value;
-  console.log(valueStr.length);
-  console.log(Number(valueStr.substring(valueStr.length - 2)));
   if (Number(valueStr.substring(0, 2)) > 12) {
     (event.target as HTMLInputElement).value = ``;
   }
@@ -22,10 +20,8 @@ export function splitCVV(event: Event): void {
 }
 
 export function onlyNumber(event: Event): void {
-  console.log(6);
   const valueStr = (event.target as HTMLInputElement).value;
   const lastSym = Number(valueStr.substring(valueStr.length - 1));
-  console.log(lastSym);
   if (
     !(
       (event.target as HTMLInputElement).closest('.credit-card-term') !==
@@ -87,7 +83,6 @@ export function getBankLogo(event: Event): void {
   const BanksLogoKeys = Object.keys(ArrBanksLogo);
 
   if (BanksLogoKeys.includes(value)) {
-    console.log('ok');
     const bankImg = document.querySelector('.bank-logo');
     if (bankImg !== null) {
       document.querySelector('.bank-logo')?.remove();
@@ -131,7 +126,7 @@ export function validation(event: Event): void {
     setTimeout(() => {
       shoppingCartContent.reset();
       shoppingCartContent.createNewPage();
-      window.location.href = '/dist/index.html';
+      window.location.href = '/index.html';
     }, 3000);
   }
 }

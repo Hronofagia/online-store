@@ -6,7 +6,6 @@ export default function Routing(): void {
   for (let index = 0; index < routes.length - 1; index++) {
     const testRoute = routes[index];
     if (hash === testRoute.url) {
-      console.log(testRoute.url);
       route = testRoute;
     }
   }

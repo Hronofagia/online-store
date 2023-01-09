@@ -18,7 +18,7 @@ export function buyOnProductPage(event: Event): void {
   }
 
   if ((event.target as HTMLElement).closest('.product-button-buy') !== null) {
-    window.location.href = '/dist/#shopping-cart';
+    window.location.href = '/#shopping-cart';
     const currantButton = (event.target as HTMLElement).closest(
       '.product-button-buy',
     );
