@@ -1,5 +1,6 @@
 import { currentlocalStorage } from '../../utils/localStorage';
-// import { createProductPageContent } from '../product-page/blocks-body-product';
+
+import { shoppingCartContent } from './shopping-cart';
 
 export function listenerAddAndAbout(event: Event): void {
   if (
@@ -11,17 +12,13 @@ export function listenerAddAndAbout(event: Event): void {
     const currantIdProduct = currantButton?.getAttribute('id');
     currentlocalStorage.pullProducts(Number(currantIdProduct));
     currantButton?.classList.toggle('active-button');
+    shoppingCartContent.getSummary();
   }
-  // if (
-  //   (event.target as HTMLElement).closest('.card_product__button_about') !==
-  //   null
-  // ) {
-  //   const currantButton = (event.target as HTMLElement).closest(
-  //     '.card_product__button_about',
-  //   );
-  //   const currantId = String(currantButton?.getAttribute('id'));
-  //   window.location.href = '/dist/#product-page';
-
-  //   createProductPageContent(currantId);
-  // }
+  if (
+    (event.target as HTMLElement).closest('.card_product__button_about') !==
+    null
+  ) {
+    const currantId = String((event.target as HTMLElement).getAttribute('id'));
+    window.location.href = `/dist/#product-page/${currantId}`;
+  }
 }

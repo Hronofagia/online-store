@@ -2,6 +2,7 @@ import './shopping-cart.sass';
 import { currentlocalStorage } from '../../utils/localStorage';
 import { shoppingCartContent } from './shopping-cart';
 import { clearDiscount } from './promo-code';
+import { store } from '../..';
 
 export function changeCountOfProducts(event: Event): void {
   if (
@@ -14,12 +15,15 @@ export function changeCountOfProducts(event: Event): void {
     const countOfProduct = (currantProduct as HTMLElement)?.querySelector(
       '.counter-block_number',
     );
-    const currantStock = Number(
-      (currantProduct as HTMLElement).querySelector('.product_companent_stock')
+    const summaryPriceForOneProductEl = (
+      currantProduct as HTMLElement
+    )?.querySelector('.product_companent_price');
+    const summaryPriceForOneProduct = Number(
+      (currantProduct as HTMLElement)?.querySelector('.product_companent_price')
         ?.innerHTML,
     );
-    const currantPrice = Number(
-      (currantProduct as HTMLElement).querySelector('.product_companent_price')
+    const currantStock = Number(
+      (currantProduct as HTMLElement).querySelector('.product_companent_stock')
         ?.innerHTML,
     );
     const curranPage = document.querySelector('.cart-count-pages');
@@ -27,23 +31,11 @@ export function changeCountOfProducts(event: Event): void {
     const summaryCount = document.querySelector('.cart-block-total-count');
     const summaryPrice = document.querySelector('.cart-block-total-price');
 
-    if (
-      (event.target as HTMLElement).closest('.counter-block_minus') !== null &&
-      Number((countOfProduct as HTMLElement).innerHTML) > 1
-    ) {
-      (
-        document.querySelector('.cart-block-total-count') as HTMLElement
-      ).innerHTML = `${Number(summaryCount?.innerHTML) - 1}`;
-      (
-        document.querySelector('.cart-block-total-price') as HTMLElement
-      ).innerHTML = `${Number(summaryPrice?.innerHTML) - currantPrice}`;
+    const currantARRIndex = store.items.findIndex(
+      (product) => Number(product.id) === Number(currantIdProduct),
+    );
 
-      (
-        (currantProduct as HTMLElement).querySelector(
-          '.counter-block_number',
-        ) as HTMLElement
-      ).innerHTML = `${Number((countOfProduct as HTMLElement).innerHTML) - 1}`;
-    }
+    const currantPrice = store.items[currantARRIndex].price;
 
     if (
       (event.target as HTMLElement).closest('.counter-block_minus') !== null &&
@@ -62,6 +54,28 @@ export function changeCountOfProducts(event: Event): void {
 
       shoppingCartContent.render();
     }
+
+    if (
+      (event.target as HTMLElement).closest('.counter-block_minus') !== null &&
+      Number((countOfProduct as HTMLElement).innerHTML) > 1
+    ) {
+      (
+        document.querySelector('.cart-block-total-count') as HTMLElement
+      ).innerHTML = `${Number(summaryCount?.innerHTML) - 1}`;
+      (
+        document.querySelector('.cart-block-total-price') as HTMLElement
+      ).innerHTML = `${Number(summaryPrice?.innerHTML) - currantPrice}`;
+
+      (
+        (currantProduct as HTMLElement).querySelector(
+          '.counter-block_number',
+        ) as HTMLElement
+      ).innerHTML = `${Number((countOfProduct as HTMLElement).innerHTML) - 1}`;
+      (summaryPriceForOneProductEl as HTMLElement).innerHTML = `${
+        summaryPriceForOneProduct - currantPrice
+      }`;
+    }
+
     if (
       (event.target as HTMLElement).closest('.counter-block_plus') !== null &&
       Number((countOfProduct as HTMLElement).innerHTML) < currantStock
@@ -77,6 +91,9 @@ export function changeCountOfProducts(event: Event): void {
       (
         document.querySelector('.cart-block-total-price') as HTMLElement
       ).innerHTML = `${Number(summaryPrice?.innerHTML) + currantPrice}`;
+      (summaryPriceForOneProductEl as HTMLElement).innerHTML = `${
+        summaryPriceForOneProduct + currantPrice
+      }`;
     }
   }
 }

@@ -4,33 +4,48 @@ import { createHTML } from '../../utils/createHTML';
 const AllPromoCode: Promocode = { '1': 2, '2': 5, '3': 10, '4': 15 };
 
 export function addPromoCode(event: Event): void {
-  const value = (
+  const valueDiscont = (
     document.querySelector('.cart-block-total-input') as HTMLInputElement
   ).value;
   const keys = Object.keys(AllPromoCode);
 
-  if (keys.includes(value)) {
-    const currantPrice = document.querySelector(
-      '.cart-block-total-price',
-    ) as HTMLElement;
-    const newPriceElement = document.querySelector(
-      '.cart-block-total-new-price',
-    ) as HTMLElement;
+  if (keys.includes(valueDiscont)) {
+    const currantPriceWithoutDiscont = Number(
+      (document.querySelector('.cart-block-total-price') as HTMLElement)
+        .innerHTML,
+    );
+
+    let ValueForCounting = currantPriceWithoutDiscont;
+
+    if (
+      (document.querySelector('.cart-block-total-new-price') as HTMLElement)
+        .innerHTML !== ``
+    ) {
+      ValueForCounting = Number(
+        (document.querySelector('.cart-block-total-new-price') as HTMLElement)
+          .innerHTML,
+      );
+    }
 
     let discont =
-      (Number(currantPrice.innerHTML) / 100) * Number(AllPromoCode[value]);
+      (Number(currantPriceWithoutDiscont) / 100) *
+      Number(AllPromoCode[valueDiscont]);
 
-    let newPrice = Number(currantPrice.innerHTML) - discont;
-
-    newPrice = Math.round(newPrice);
+    let newPrice = Number(ValueForCounting) - discont;
 
     newPrice = Math.round(newPrice);
     discont = Math.round(discont);
 
-    newPriceElement.innerHTML = `${newPrice}`;
+    (
+      document.querySelector('.cart-block-total-new-price') as HTMLElement
+    ).innerHTML = `${newPrice}`;
 
-    currantPrice.classList.add('crossed');
-    newPriceElement.classList.remove('hidden');
+    (
+      document.querySelector('.cart-block-total-price') as HTMLElement
+    ).classList.add('crossed');
+    (
+      document.querySelector('.cart-block-total-new-price') as HTMLElement
+    ).classList.remove('hidden');
     (
       document.querySelector('.cart-block-total-input') as HTMLInputElement
     ).value = ``;
@@ -41,7 +56,7 @@ export function addPromoCode(event: Event): void {
     const promoCode = createHTML(
       'div',
       'applied-promoCode',
-      `${value} applied  `,
+      `${valueDiscont} applied  `,
     );
     promoCodeElement?.after(promoCode);
 
@@ -55,7 +70,7 @@ export function addPromoCode(event: Event): void {
     const valuePercentElement = createHTML(
       'span',
       'promoCode-percent',
-      `${AllPromoCode[value]}`,
+      `${AllPromoCode[valueDiscont]}`,
     );
     promoCode?.append(valuePercentElement);
 

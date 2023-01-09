@@ -9,6 +9,10 @@
     "strict": true,
     "resolveJsonModule": true
   },
-  "files": ["src/index.ts"],
+  "files": [
+    "src/index.ts",
+    "src/pages/shopping-cart/listener-turnPageInCart.ts",
+    "src/pages/shopping-cart/listener-CountProductOnPage.ts"
+  ],
   "include": ["src", "index.d.ts"]
 }

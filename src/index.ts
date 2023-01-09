@@ -9,12 +9,11 @@ import './styles.sass';
 import { Store } from './store';
 import { showBrand, showCategory } from './components/filters/filters';
 import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
+import { createProductPageContent } from './pages/product-page/create-body';
 
 document.body.append(header);
 document.body.appendChild(createHTML('main', 'main'));
 document.body.append(footer);
-initRoutes();
-Routing();
 
 export const store = new Store();
 const fetchData = async (): Promise<void> => {
@@ -27,11 +26,17 @@ const fetchData = async (): Promise<void> => {
   allData.forEach((element) => {
     store.setItems(element);
   });
+
+  initRoutes();
+  Routing();
+
   store.filterItems();
   showCards();
   showCategory();
   showBrand();
+
   shoppingCartContent.createNewPage();
+  createProductPageContent();
 };
 
 void fetchData();
