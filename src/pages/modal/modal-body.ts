@@ -4,15 +4,23 @@ import { closeModal, onlyNumber, splitCVV, validation } from './listeners';
 import './modal.sass';
 
 export function createModalWindow(): void {
-  document.querySelector('.cart-block-title')?.classList.add('hidden');
-  document.querySelector('.cart-block-products')?.classList.add('hidden');
-  document
-    .querySelector('.cart-block-total-discount-wrapper')
-    ?.classList.add('hidden');
-  document.querySelector('.cart-block-total-button')?.classList.add('hidden');
-
   const form = createHTML('form', 'wrapper-modal-form');
-  shoppingCartContainer?.append(form);
+
+  if (document.querySelector('.shopping-cart_container') !== null) {
+    document.querySelector('.cart-block-title')?.classList.add('hidden');
+    document.querySelector('.cart-block-products')?.classList.add('hidden');
+    document
+      .querySelector('.cart-block-total-discount-wrapper')
+      ?.classList.add('hidden');
+    document.querySelector('.cart-block-total-button')?.classList.add('hidden');
+    shoppingCartContainer?.append(form);
+  }
+  if (document.querySelector('.product-page_container') !== null) {
+    document
+      .querySelector('.product-page-wrapper')
+      ?.setAttribute('id', 'hidden');
+    document.querySelector('.product-page_container')?.append(form);
+  }
 
   const cross = createHTML('div', 'cross-esc', '\u2573');
   form?.append(cross);

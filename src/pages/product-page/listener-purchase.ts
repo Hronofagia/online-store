@@ -18,15 +18,15 @@ export function buyOnProductPage(event: Event): void {
   }
 
   if ((event.target as HTMLElement).closest('.product-button-buy') !== null) {
-    window.location.href = '/#shopping-cart';
-    const currantButton = (event.target as HTMLElement).closest(
-      '.product-button-buy',
-    );
-    const currantIdProduct = currantButton?.getAttribute('id');
-    if (!currentlocalStorage.getProducts().includes(Number(currantIdProduct))) {
-      currentlocalStorage.pullProducts(Number(currantIdProduct));
-    }
-    shoppingCartContent.render();
+    // window.location.href = '/#shopping-cart';
+    // const currantButton = (event.target as HTMLElement).closest(
+    //   '.product-button-buy',
+    // );
+    // const currantIdProduct = currantButton?.getAttribute('id');
+    // if (!currentlocalStorage.getProducts().includes(Number(currantIdProduct))) {
+    //   currentlocalStorage.pullProducts(Number(currantIdProduct));
+    // }
+    // shoppingCartContent.render();
     modalWindow.render();
   }
 }

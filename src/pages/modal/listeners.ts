@@ -68,14 +68,19 @@ export function onlyNumber(event: Event): void {
 export function closeModal(event: Event): void {
   document.querySelector('.wrapper-modal-form')?.remove();
 
-  document.querySelector('.cart-block-title')?.classList.remove('hidden');
-  document.querySelector('.cart-block-products')?.classList.remove('hidden');
-  document
-    .querySelector('.cart-block-total-discount-wrapper')
-    ?.classList.remove('hidden');
-  document
-    .querySelector('.cart-block-total-button')
-    ?.classList.remove('hidden');
+  if (document.querySelector('.shopping-cart_container') !== null) {
+    document.querySelector('.cart-block-title')?.classList.remove('hidden');
+    document.querySelector('.cart-block-products')?.classList.remove('hidden');
+    document
+      .querySelector('.cart-block-total-discount-wrapper')
+      ?.classList.remove('hidden');
+    document
+      .querySelector('.cart-block-total-button')
+      ?.classList.remove('hidden');
+  }
+  if (document.querySelector('.product-page_container') !== null) {
+    document.querySelector('.product-page-wrapper')?.removeAttribute('id');
+  }
 }
 
 export function getBankLogo(event: Event): void {

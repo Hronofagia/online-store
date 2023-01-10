@@ -79,7 +79,6 @@ mainContainer.append(filtersContainer);
 
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
-  console.log(store.filteredItems);
   if (store.filteredItems.length === 0) {
     const noneProduct = createHTML(
       'div',
@@ -177,7 +176,6 @@ export const showSearch = (): void => {
 
 export const showView = (): void => {
   const view = store.cardView;
-  console.log(view);
   if (view === CatalogView.card) {
     listMenu.classList.remove('current__menu_icon');
     cardMenu.classList.add('current__menu_icon');
