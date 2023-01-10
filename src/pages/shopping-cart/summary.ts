@@ -28,4 +28,7 @@ export function getSummary(): void {
   (
     document.querySelector('.price__number') as HTMLElement
   ).innerHTML = `${summaryPrice}`;
+  (
+    document.querySelector('.count_header__title') as HTMLElement
+  ).innerHTML = `${summaryCount}`;
 }

@@ -20,3 +20,5 @@ header.append(shoppingCart);
 const iconContainer = createHTML('div', 'shopping-cart__img');
 iconContainer.style.backgroundImage = `url(${cart as string})`;
 shoppingCart.append(iconContainer);
+const countProductInCart = createHTML('p', 'count_header__title');
+iconContainer.append(countProductInCart);
