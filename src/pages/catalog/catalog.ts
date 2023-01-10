@@ -79,35 +79,45 @@ mainContainer.append(filtersContainer);
 
 export const showCards: () => void = () => {
   Array.from(catalogList.children).forEach((el) => el.remove());
-  store.sortItems();
-  store.filteredItems.forEach((el) => {
-    const cardProduct = createHTML('div', store.cardView);
-    catalogList.append(cardProduct);
-    const cardProductImage = createHTML('div', 'card_product__image');
-    cardProductImage.style.backgroundImage = `url("${el.thumbnail}")`;
-    cardProduct.append(cardProductImage);
-    const cardProductName = createHTML('p', 'card_product__name', el.title);
-    cardProduct.append(cardProductName);
-    const cardProductButtonContainer = createHTML(
+  console.log(store.filteredItems);
+  if (store.filteredItems.length === 0) {
+    const noneProduct = createHTML(
       'div',
-      'card_product__button_container',
+      'none_product',
+      'No products found, please enter other search parameters.',
     );
-    cardProduct.append(cardProductButtonContainer);
-    const cardProductButtonAbout = createHTML(
-      'button',
-      'card_product__button_about',
-      'About',
-      el.id,
-    );
-    cardProductButtonContainer.append(cardProductButtonAbout);
-    const cardProductButtonAdd = createHTML(
-      'button',
-      'card_product__button_add',
-      'Add to Cart',
-      el.id,
-    );
-    cardProductButtonContainer.append(cardProductButtonAdd);
-  });
+    catalogList.append(noneProduct);
+  } else {
+    store.sortItems();
+    store.filteredItems.forEach((el) => {
+      const cardProduct = createHTML('div', store.cardView);
+      catalogList.append(cardProduct);
+      const cardProductImage = createHTML('div', 'card_product__image');
+      cardProductImage.style.backgroundImage = `url("${el.thumbnail}")`;
+      cardProduct.append(cardProductImage);
+      const cardProductName = createHTML('p', 'card_product__name', el.title);
+      cardProduct.append(cardProductName);
+      const cardProductButtonContainer = createHTML(
+        'div',
+        'card_product__button_container',
+      );
+      cardProduct.append(cardProductButtonContainer);
+      const cardProductButtonAbout = createHTML(
+        'button',
+        'card_product__button_about',
+        'About',
+        el.id,
+      );
+      cardProductButtonContainer.append(cardProductButtonAbout);
+      const cardProductButtonAdd = createHTML(
+        'button',
+        'card_product__button_add',
+        'Add to Cart',
+        el.id,
+      );
+      cardProductButtonContainer.append(cardProductButtonAdd);
+    });
+  }
   foundProducts.textContent = `Found ${store.filteredItems.length} products`;
   saveButton.textContent = 'Save filters';
   catalogList.addEventListener('click', listenerAddAndAbout);
@@ -165,4 +175,14 @@ export const showSearch = (): void => {
   searchBox.value = store.settings.search;
 };
 
-export const showView = (): void => {};
+export const showView = (): void => {
+  const view = store.cardView;
+  console.log(view);
+  if (view === CatalogView.card) {
+    listMenu.classList.remove('current__menu_icon');
+    cardMenu.classList.add('current__menu_icon');
+  } else {
+    cardMenu.classList.remove('current__menu_icon');
+    listMenu.classList.add('current__menu_icon');
+  }
+};

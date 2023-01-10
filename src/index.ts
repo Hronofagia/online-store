@@ -5,7 +5,12 @@ import { initRoutes } from './navigation/routes';
 import { createHTML } from './utils/createHTML';
 import { shoppingCartContent } from './pages/shopping-cart/shopping-cart';
 import { createProductPageContent } from './pages/product-page/create-body';
-import { showCards, showSearch, showSort } from './pages/catalog/catalog';
+import {
+  showCards,
+  showSearch,
+  showSort,
+  showView,
+} from './pages/catalog/catalog';
 import { Store } from './store';
 import {
   showBrand,
@@ -77,6 +82,7 @@ const fetchData = async (): Promise<void> => {
   showStock();
   showSort();
   showSearch();
+  showView();
   shoppingCartContent.createNewPage();
 };
 
