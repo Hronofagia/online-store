@@ -7,7 +7,10 @@ const isProduction = process.env.NODE_ENV == 'production';
 const stylesHandler = 'style-loader';
 
 const config = {
-  entry: './src/index.ts',
+  entry: {
+    index: './src/index.ts',
+    '404-page': './src/pages/404-page/404-page.ts',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
@@ -19,6 +22,13 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+      chunks: ['index'],
+      filename: 'index.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/pages/404-page/404-page.html',
+      chunks: ['404-page'],
+      filename: '404-page.html',
     }),
     new CopyPlugin({
       patterns: [{ from: './src/data', to: 'data' }],

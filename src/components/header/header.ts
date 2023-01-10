@@ -16,7 +16,7 @@ const priceNumber = createHTML('p', 'price__number', '0 €');
 price.append(priceNumber);
 const shoppingCart = createHTML('a', 'shopping-cart') as HTMLAnchorElement;
 shoppingCart.href = '/#shopping-cart';
+header.append(shoppingCart);
 const iconContainer = createHTML('div', 'shopping-cart__img');
 iconContainer.style.backgroundImage = `url(${cart as string})`;
 shoppingCart.append(iconContainer);
-header.append(shoppingCart);

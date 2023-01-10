@@ -96,14 +96,14 @@ export const showCards: () => void = () => {
     const cardProductButtonAbout = createHTML(
       'button',
       'card_product__button_about',
-      'about',
+      'About',
       el.id,
     );
     cardProductButtonContainer.append(cardProductButtonAbout);
     const cardProductButtonAdd = createHTML(
       'button',
       'card_product__button_add',
-      'add',
+      'Add to Cart',
       el.id,
     );
     cardProductButtonContainer.append(cardProductButtonAdd);

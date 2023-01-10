@@ -9,3 +9,6 @@ errorImg.src = errorImage;
 errorContainer.append(errorImg);
 const errorTitle = createHTML('p', 'error_title', 'Page not found');
 errorContainer.append(errorTitle);
+const errorA = createHTML('a', 'error_a', 'Back to store') as HTMLAnchorElement;
+errorA.href = './';
+errorContainer.append(errorA);
