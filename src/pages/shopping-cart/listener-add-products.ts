@@ -12,6 +12,7 @@ export function listenerAddAndAbout(event: Event): void {
     const currantIdProduct = currantButton?.getAttribute('id');
     currentlocalStorage.pullProducts(Number(currantIdProduct));
     currantButton?.classList.toggle('active-button');
+    currantButton?.classList.toggle('not-active-button');
     shoppingCartContent.getSummary();
   }
   if (

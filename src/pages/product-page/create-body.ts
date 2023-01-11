@@ -118,7 +118,6 @@ export function createProductPageContent(): void {
     if (!currentlocalStorage.getProducts().includes(numberInStoreARR)) {
       buttonAdd.classList.add('active-button');
     }
-    buttonBuyNow.classList.add('active-button');
     blockPrice.append(price);
     buttonBlock.append(buttonAdd);
     buttonBlock.append(buttonBuyNow);

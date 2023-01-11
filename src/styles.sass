@@ -16,4 +16,14 @@ main
 $purple: #D39CBD
 
 .active-button
-  background-color: green
+  background-color: $purple
+  &::before
+      content: "Add to cart"
+
+.not-active-button
+  background-color: #83808287
+  &::before
+      content: "Remove"
+
+.product-button-buy
+    background-color: $purple

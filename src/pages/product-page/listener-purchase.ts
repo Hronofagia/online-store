@@ -14,19 +14,11 @@ export function buyOnProductPage(event: Event): void {
     const currantIdProduct = currantButton?.getAttribute('id');
     currentlocalStorage.pullProducts(Number(currantIdProduct));
     currantButton?.classList.toggle('active-button');
+    currantButton?.classList.toggle('not-active-button');
     shoppingCartContent.getSummary();
   }
 
   if ((event.target as HTMLElement).closest('.product-button-buy') !== null) {
-    // window.location.href = '/#shopping-cart';
-    // const currantButton = (event.target as HTMLElement).closest(
-    //   '.product-button-buy',
-    // );
-    // const currantIdProduct = currantButton?.getAttribute('id');
-    // if (!currentlocalStorage.getProducts().includes(Number(currantIdProduct))) {
-    //   currentlocalStorage.pullProducts(Number(currantIdProduct));
-    // }
-    // shoppingCartContent.render();
     modalWindow.render();
   }
 }

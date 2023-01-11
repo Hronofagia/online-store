@@ -110,8 +110,8 @@ export const showCards: () => void = () => {
       cardProductButtonContainer.append(cardProductButtonAbout);
       const cardProductButtonAdd = createHTML(
         'button',
-        'card_product__button_add',
-        'Add to Cart',
+        'card_product__button_add active-button',
+        '',
         el.id,
       );
       cardProductButtonContainer.append(cardProductButtonAdd);
