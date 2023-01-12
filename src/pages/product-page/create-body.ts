@@ -116,7 +116,7 @@ export function createProductPageContent(): void {
     const buttonAdd = createHTML('button', 'product-button-add');
     const buttonBuyNow = createHTML('button', 'product-button-buy', 'BUY NOW');
     if (!currentlocalStorage.getProducts().includes(numberInStoreARR)) {
-      buttonAdd.classList.add('active-button');
+      buttonAdd.classList.add('not-active-button');
     }
     blockPrice.append(price);
     buttonBlock.append(buttonAdd);

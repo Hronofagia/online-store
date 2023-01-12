@@ -95,5 +95,17 @@ export function changeCountOfProducts(event: Event): void {
         summaryPriceForOneProduct + currantPrice
       }`;
     }
+    const newPrice = (
+      document.querySelector('.cart-block-total-price') as HTMLElement
+    ).innerHTML;
+    const newCount = (
+      document.querySelector('.cart-block-total-count') as HTMLElement
+    ).innerHTML;
+    (
+      document.querySelector('.price__number') as HTMLElement
+    ).innerHTML = `${newPrice}`;
+    (
+      document.querySelector('.count_header__title') as HTMLElement
+    ).innerHTML = `${newCount}`;
   }
 }

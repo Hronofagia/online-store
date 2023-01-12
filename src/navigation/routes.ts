@@ -1,5 +1,6 @@
 import { store } from '..';
 import { catalogContainer } from '../pages/catalog/catalog';
+import { checkCart } from '../pages/product-page/listener-purchase';
 import { productPageContainer } from '../pages/product-page/product-page';
 import { shoppingCartContainer } from '../pages/shopping-cart/shopping-cart';
 
@@ -14,6 +15,7 @@ export const initRoutes = (): void => {
         callback: function () {
           appArea.innerHTML = '';
           appArea.appendChild(catalogContainer);
+          checkCart();
         },
       },
       {
