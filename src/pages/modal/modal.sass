@@ -1,0 +1,143 @@
+$purple: #D39CBD
+#hidden
+    display: none
+
+.background-wrapper
+    position: absolute
+    heigth: 100%
+    wigth: 100%
+    background-color: #625e66db
+
+.cross-esc
+    position: absolute
+    right: 5%
+    top: 1%
+
+.wrapper-modal-form
+    position: absolute
+    height: min-content
+    z-index: 20
+    border: 1px solid #c9b9e1
+    border-radius: 10px
+    padding: 1%
+    width: 40%
+    min-height: 200px
+    left: 30%
+    display: grid
+    grid-auto-rows: 2fr 1.5fr 0.7fr
+    justify-items: center
+    align-items: center
+    background-color: #e2d9ef
+    top: 15%
+
+
+.section-personal-inf
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    max-height: 200px
+    min-height: 200px
+    padding: 2%
+    width: 70%
+
+.modal-input-personal
+    height: 25px
+    border-radius: 10px
+    text-align: center
+    border: none
+
+
+.modal-input-personal
+    &:valid
+        border: 1px solid
+        border-color: green 
+
+.section-credit-card
+    position: relative  
+    height: 150px
+    width: 60%
+    border-radius: 10px
+    margin-top: 10px
+    background-image: linear-gradient(#0059ffbf, #ff006442)
+
+.section-credit-card input 
+    position: absolute
+
+.credit-card-number,
+.block-img
+    position: absolute
+    top: 15%
+
+.credit-card-number
+    width: 70%
+    left: 25%
+
+.block-img
+    background-color: white
+    left: 3%
+    width: 18%
+
+.bank-logo
+    height: 70%
+    margin-top: 4px
+
+.credit-card-term
+    left: 10%
+
+.credit-card-CVV
+    left: 70%
+
+.credit-card-term,
+.credit-card-CVV
+   top: 60%
+   width: 20%
+
+.credit-card-term,
+.credit-card-CVV,
+.credit-card-number,
+.block-img
+    border-radius: 5px
+    height: 30px
+    border: none
+    text-align: center
+
+.credit-card-button
+    height: 50px
+    width: 30%
+    border-radius: 10px
+    background-color: #5ea818
+    color: white
+    font-weight: 700
+    border-radius: 10px
+    border: none
+    font-size: 18px
+
+.error-message
+    font-size: 12px
+    text-align: center
+    color: red
+
+#error-message4,
+#error-message5,
+#error-message6
+    position: absolute
+
+#error-message4
+    left: 50%
+    top: 3%
+
+#error-message5,
+#error-message6
+    top: 50%
+
+#error-message6
+    left: 72%
+
+#error-message5
+    left: 12%
+
+.red-border
+    border: 1px solid red
+
+.message-order-position
+    top: 20vh

@@ -1,0 +1,39 @@
+@import "../../styles"
+
+.header 
+  background-color: $purple
+  height: 8vh
+  display: flex
+  padding: 0 15%
+  justify-content: space-between
+  align-items: center
+  color: white
+  .logo
+    text-decoration: none
+    font-family: 'Rowdies', cursive
+    font-size: 30px
+    color: white
+  .price
+    display: flex
+    gap: 5px
+  .shopping-cart
+    display: inline-block
+    height: 50px
+    width: 50px
+    .shopping-cart__img
+      background-size: cover
+      height: 50px
+      width: 50px
+      position: relative
+      .count_header__title
+        position: absolute
+        height: 20px
+        width: 20px
+        background-color: green
+        border-radius: 50%
+        left: 5px
+        bottom: 5px
+        color: white
+        display: flex
+        align-content: center
+        justify-content: center

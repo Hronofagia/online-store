@@ -1,0 +1,69 @@
+@import "../../styles"
+
+.product-page-wrapper
+    display: grid
+    grid-template-columns: 0.5fr 3fr 2fr 2fr
+    grid-template-rows: 0.3fr 2fr 2fr
+    grid-template-areas: "path path path path" "images mainImg blockDescription price" "description description description description"
+    margin: 30px auto 0 auto
+    width: 90%
+    grid-gap: 10px
+    max-width: 900px
+
+.product-page-title
+    grid-area: path
+    border-bottom: 1px solid #524f4f40
+    font-size: 14px
+    color: #585858
+
+.product-page-images
+    grid-area: images
+
+.product-page-main-imag
+    grid-area: mainImg
+    display: grid
+    justify-items: center
+    align-content: space-evenly
+
+.item-main-imag
+    width: 90%
+
+.product-page-block-description
+    grid-area: blockDescription
+    text-align: center
+
+
+.product-page-block-description,
+.product-page-block-price
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-evenly
+    text-align: center
+
+.description-text
+    grid-area: description
+    border-top: 1px solid #524f4f40
+    padding: 10px
+    text-align: justify
+
+.product-page-img
+    border: 1px solid $purple
+    margin-bottom: 5px
+    text-align: center
+
+.item-img
+    width: 90%
+
+.product-page-price
+    font-size: 1.3em
+
+.product-button-add,
+.product-button-buy
+    width: 100px
+    height: 30px
+    color: white
+    font-weight: 700
+    border-radius: 10px
+    border: none
+    margin-top: 20px
